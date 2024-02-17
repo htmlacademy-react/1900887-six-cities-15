@@ -1,8 +1,5 @@
-import React from "react";
-import {Main} from "./Main.tsx";
+import {Main} from './Main.tsx';
 
-export const App = ({props}) => {
-  return (
-    <Main offersCount={props}/>
-  )
-}
+export const App = ({props}: {props: number}) => (
+  <Main offersCount={props}/>
+);

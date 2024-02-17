@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {App} from "./components/App.tsx";
+import {App} from './components/App.tsx';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const OFFERS_COUNT = 5;
+const OFFERS_COUNT: number = 5;
 
 root.render(
   <React.StrictMode>
