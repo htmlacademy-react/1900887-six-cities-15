@@ -1,36 +1,7 @@
-const Header = () => (
-  <header className="header">
-    <div className="container">
-      <div className="header__wrapper">
-        <div className="header__left">
-          <a className="header__logo-link header__logo-link--active">
-            <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-          </a>
-        </div>
-        <nav className="header__nav">
-          <ul className="header__nav-list">
-            <li className="header__nav-item user">
-              <a className="header__nav-link header__nav-link--profile" href="#">
-                <div className="header__avatar-wrapper user__avatar-wrapper">
-                </div>
-                <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                <span className="header__favorite-count">3</span>
-              </a>
-            </li>
-            <li className="header__nav-item">
-              <a className="header__nav-link" href="#">
-                <span className="header__signout">Sign out</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-);
+import {Fragment} from 'react';
 
-const CitiesTabs = () => (
-  <>
+const CitiesTabs = (): JSX.Element => (
+  <Fragment>
     <h1 className="visually-hidden">Cities</h1>
     <div className="tabs">
       <section className="locations container">
@@ -68,7 +39,7 @@ const CitiesTabs = () => (
         </ul>
       </section>
     </div>
-  </>
+  </Fragment>
 );
 
 const CityPlace = () => (
@@ -96,7 +67,7 @@ const CityPlace = () => (
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${80 }%`}}></span>
+          <span style={{width: `${80}%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
@@ -151,7 +122,7 @@ const CityMap = () => (
   </div>
 );
 
-const Cities = ({offersCount}: {offersCount: number}) => (
+export const Main = ({offersCount}: {offersCount: number}): JSX.Element => (
   <main className="page__main page__main--index">
     <CitiesTabs/>
     <div className='cities'>
@@ -161,11 +132,4 @@ const Cities = ({offersCount}: {offersCount: number}) => (
       </div>
     </div>
   </main>
-);
-
-export const Main = ({offersCount}: {offersCount: number}) => (
-  <>
-    <Header/>
-    <Cities offersCount={offersCount}/>
-  </>
 );
