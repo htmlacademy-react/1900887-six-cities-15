@@ -1,4 +1,4 @@
-export const MainEmpty = () => (
+export const MainEmpty = (): JSX.Element => (
   <div className="cities">
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">
