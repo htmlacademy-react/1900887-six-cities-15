@@ -1,24 +1,20 @@
-const OfferGallery = ():JSX.Element => (
+import { FC, useState, ChangeEvent } from 'react';
+import { HostInfo, Offer, OfferFeaturesType, OffersInfo } from '../types/offers';
+import { useParams } from 'react-router-dom';
+import { capitalize } from '../utils';
+import { NotFound } from '../components/404';
+import { Nullable } from 'vitest';
+
+const OfferImageWrapper = ({image}: {image: string}) => (
+  <div className="offer__image-wrapper">
+    <img className="offer__image" src={image} alt="Photo studio"/>
+  </div>
+);
+
+const OfferGallery = ({images}: {images: string[]}) => (
   <div className="offer__gallery-container container">
     <div className="offer__gallery">
-      <div className="offer__image-wrapper">
-        <img className="offer__image" src="img/room.jpg" alt="Photo studio"/>
-      </div>
-      <div className="offer__image-wrapper">
-        <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-      </div>
-      <div className="offer__image-wrapper">
-        <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-      </div>
-      <div className="offer__image-wrapper">
-        <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-      </div>
-      <div className="offer__image-wrapper">
-        <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio"/>
-      </div>
-      <div className="offer__image-wrapper">
-        <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-      </div>
+      {images.map((image) => <OfferImageWrapper image={image} key={image}/>)}
     </div>
   </div>
 );
@@ -29,10 +25,10 @@ const OfferMark = () => (
   </div>
 );
 
-const OfferTitle = ():JSX.Element => (
+const OfferTitle = ({title}: {title: string}) => (
   <div className="offer__name-wrapper">
     <h1 className="offer__name">
-      Beautiful &amp; luxurious studio at great location
+      {title}
     </h1>
     <button className="offer__bookmark-button button" type="button">
       <svg className="offer__bookmark-icon" width="31" height="33">
@@ -43,101 +39,150 @@ const OfferTitle = ():JSX.Element => (
   </div>
 );
 
-const OfferRating = ():JSX.Element => (
+const OfferRating = ({rating}: {rating: number}) => (
   <div className="offer__rating rating">
     <div className="offer__stars rating__stars">
-      <span style={{width: '80%'}}></span>
+      <span style={{width: `${20 * rating}%`}}></span>
       <span className="visually-hidden">Rating</span>
     </div>
-    <span className="offer__rating-value rating__value">4.8</span>
+    <span className="offer__rating-value rating__value">{rating}</span>
   </div>
 );
 
-const OfferFeatures = ():JSX.Element => (
+const OfferFeatures = ({type, bedrooms, maxAdults}: OfferFeaturesType) => (
   <ul className="offer__features">
     <li className="offer__feature offer__feature--entire">
-      Apartment
+      {capitalize(type)}
     </li>
     <li className="offer__feature offer__feature--bedrooms">
-      3 Bedrooms
+      {bedrooms} Bedrooms
     </li>
     <li className="offer__feature offer__feature--adults">
-      Max 4 adults
+      Max {maxAdults} adults
     </li>
   </ul>
 );
 
-const OfferPrice = ():JSX.Element => (
+const OfferPrice = ({price}: {price: number}) => (
   <div className="offer__price">
-    <b className="offer__price-value">&euro;120</b>
+    <b className="offer__price-value">&euro;{price}</b>
     <span className="offer__price-text">&nbsp;night</span>
   </div>
 );
 
-const OfferInside = ():JSX.Element => (
-  <div className="offer__inside">
-    <h2 className="offer__inside-title">What&apos;s inside</h2>
-    <ul className="offer__inside-list">
-      <li className="offer__inside-item">
-        Wi-Fi
-      </li>
-      <li className="offer__inside-item">
-        Washing machine
-      </li>
-      <li className="offer__inside-item">
-        Towels
-      </li>
-      <li className="offer__inside-item">
-        Heating
-      </li>
-      <li className="offer__inside-item">
-        Coffee machine
-      </li>
-      <li className="offer__inside-item">
-        Baby seat
-      </li>
-      <li className="offer__inside-item">
-        Kitchen
-      </li>
-      <li className="offer__inside-item">
-        Dishwasher
-      </li>
-      <li className="offer__inside-item">
-        Cabel TV
-      </li>
-      <li className="offer__inside-item">
-        Fridge
-      </li>
-    </ul>
-  </div>
+const OfferInsideItem = ({item}: {item: string}) => (
+  <li className="offer__inside-item">
+    {item}
+  </li>
 );
 
-const OfferHost = ():JSX.Element => (
+const OfferInside = ({goods} : {goods?: [string]}) => {
+  if (!goods || goods.toString().length === 0) {
+    return '';
+  }
+
+  const goodsList: Nullable<string[]> = goods.toString().split(',') || null;
+  return (
+    <div className="offer__inside">
+      <h2 className="offer__inside-title">What&apos;s inside</h2>
+      <ul className="offer__inside-list">
+        {goodsList.map((good) => <OfferInsideItem item={good} key={good}/>)}
+      </ul>
+    </div>
+  );
+};
+
+const OfferHost = ({name, avatarUrl, isPro, description}: HostInfo) => (
   <div className="offer__host">
     <h2 className="offer__host-title">Meet the host</h2>
     <div className="offer__host-user user">
       <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-        <img className="offer__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
+        <img className="offer__avatar user__avatar" src={avatarUrl} width="74" height="74" alt="Host avatar"/>
       </div>
       <span className="offer__user-name">
-                    Angelina
+        {name}
       </span>
       <span className="offer__user-status">
-                    Pro
+        {isPro ? 'Pro' : ''}
       </span>
     </div>
     <div className="offer__description">
       <p className="offer__text">
-        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-      </p>
-      <p className="offer__text">
-        An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+        {description}
       </p>
     </div>
   </div>
 );
 
-const OfferReviews = ():JSX.Element => (
+const ReviewForm = () => {
+  const [formData, setFormData] = useState({
+    rating: '0',
+    review: ''
+  });
+
+  const handleRatingChange = (evt: ChangeEvent) => {
+    const {name, value} = evt.target as HTMLInputElement;
+    setFormData({...formData, [name]: value});
+  };
+
+  // const handleInputChange = (evt) => {
+
+  // };
+
+  return (
+    <form className="reviews__form form" action="#" method="post">
+      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+      <div className="reviews__rating-form form__rating">
+        <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio" onChange={handleRatingChange}/>
+        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio" onChange={handleRatingChange}/>
+        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio" onChange={handleRatingChange}/>
+        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio" onChange={handleRatingChange}/>
+        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" onChange={handleRatingChange}/>
+        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+      </div>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review"
+        placeholder="Tell how was your stay, what you like and what can be improved" onChange={handleRatingChange}
+      >
+      </textarea>
+      <div className="reviews__button-wrapper">
+        <p className="reviews__help">
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+        </p>
+        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
+      </div>
+    </form>
+  );
+};
+
+const OfferReviews = () => (
   <section className="offer__reviews reviews">
     <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
     <ul className="reviews__list">
@@ -164,52 +209,7 @@ const OfferReviews = ():JSX.Element => (
         </div>
       </li>
     </ul>
-    <form className="reviews__form form" action="#" method="post">
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <div className="reviews__rating-form form__rating">
-        <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"/>
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"/>
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"/>
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio" />
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-      </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-        </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
-      </div>
-    </form>
+    <ReviewForm />
   </section>
 );
 
@@ -325,24 +325,35 @@ const OfferOther = () => (
   </div>
 );
 
-export const Offer = (): JSX.Element => (
-  <main className="page__main page__main--offer">
-    <section className="offer">
-      <OfferGallery/>
-      <div className="offer__container container">
-        <div className="offer__wrapper">
-          <OfferMark/>
-          <OfferTitle/>
-          <OfferRating/>
-          <OfferFeatures/>
-          <OfferPrice/>
-          <OfferInside/>
-          <OfferHost/>
-          <OfferReviews/>
+export const OfferComponent: FC<OffersInfo> = ({offers})=> {
+  const params = useParams();
+  const offer:Nullable<Offer> = offers.find((item) => item.id === params.id) || null;
+
+  if (!offer) {
+    return (<NotFound/>);
+  }
+
+  const {title, type, price, isPremium, rating, goods, bedrooms, maxAdults, host: {name, avatarUrl, isPro}, description, images} = offer;
+
+  return (
+    <main className="page__main page__main--offer">
+      <section className="offer">
+        <OfferGallery images={images}/>
+        <div className="offer__container container">
+          <div className="offer__wrapper">
+            {isPremium ? <OfferMark/> : ''}
+            <OfferTitle title={title}/>
+            <OfferRating rating={rating}/>
+            <OfferFeatures bedrooms={bedrooms} type={type} maxAdults={maxAdults}/>
+            <OfferPrice price={price} />
+            <OfferInside goods={goods}/>
+            <OfferHost name={name} avatarUrl={avatarUrl} isPro={isPro} description={description}/>
+            <OfferReviews/>
+          </div>
         </div>
-      </div>
-      <OfferMap/>
-    </section>
-    <OfferOther/>
-  </main>
-);
+        <OfferMap/>
+      </section>
+      <OfferOther/>
+    </main>
+  );
+};

@@ -1,11 +1,10 @@
+import { FC, PropsWithChildren } from 'react';
 import {Navigate} from 'react-router-dom';
 
 type PrivateRouteProps = {
-  children: JSX.Element;
+  isAuth: boolean;
 };
 
-export const PrivateRoute = ({children}: PrivateRouteProps): JSX.Element => {
-  const isLogged = false;
-
-  return isLogged ? children : <Navigate to={'/login'} />;
-};
+export const PrivateRoute: FC<PropsWithChildren<PrivateRouteProps>> = ({children, isAuth}) => (
+  isAuth ? children : <Navigate to={'/login'} />
+);
