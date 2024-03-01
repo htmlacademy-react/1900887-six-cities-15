@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {App} from './app/app.tsx';
+import {App} from './app/app/app.tsx';
 import { offers } from './mocks/offers.ts';
 import { reviews } from './mocks/reviews.ts';
 

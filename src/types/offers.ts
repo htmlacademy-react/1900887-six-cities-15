@@ -55,7 +55,21 @@ export interface OffersInfo {offers: Offer[]; reviews: Review[]}
 
 export interface IOffer {offer: OfferInfo}
 
-export type OfferFeaturesType = {type: string; bedrooms?: number; maxAdults?: number};
+export type OfferFeaturesProps = {type: string; bedrooms?: number; maxAdults?: number};
 
 export type HostInfo = Host & {description: string};
+
+export type OfferGalleryProps = {images: string[]};
+
+export type OfferImageWrapperProps = {image: string};
+
+export type OfferInsideItemProps = {item: string};
+
+export type OfferInsideProps = {goods?: [string]};
+
+export type OfferPriceProps = {price: number};
+
+export type OfferRatingProps = {rating: number};
+
+export type OfferTitleProps = {title: string};
 

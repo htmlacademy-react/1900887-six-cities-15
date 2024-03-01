@@ -27,11 +27,11 @@ const offers: Offer[] = [
     goods: ['Heating'],
     host: {
       name: 'Oliver Conner',
-      avatarUrl: 'https://url-to-image/image.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       isPro: false
     },
     images: [
-      'https://url-to-image/image.png'
+      'img/room.jpg, img/apartment-01.jpg, img/apartment-02.jpg, img/apartment-03.jpg, img/studio-01.jpg, img/studio-01.jpg'
     ],
     maxAdults: 4
   },
@@ -61,11 +61,11 @@ const offers: Offer[] = [
     goods: ['Heating, WI-FI'],
     host: {
       name: 'Brian May',
-      avatarUrl: 'https://url-to-image/image.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true
     },
     images: [
-      'https://url-to-image/image.png'
+      'img/room.jpg, img/apartment-01.jpg, img/apartment-02.jpg, img/apartment-03.jpg, img/studio-01.jpg, img/studio-01.jpg'
     ],
     maxAdults: 3
   },
@@ -95,11 +95,11 @@ const offers: Offer[] = [
     goods: [''],
     host: {
       name: 'James Hatfield',
-      avatarUrl: 'https://url-to-image/image.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       isPro: true
     },
     images: [
-      'https://url-to-image/image.png'
+      'img/room.jpg, img/apartment-01.jpg, img/apartment-02.jpg, img/apartment-03.jpg, img/studio-01.jpg, img/studio-01.jpg'
     ],
     maxAdults: 1
   },
@@ -129,11 +129,11 @@ const offers: Offer[] = [
     goods: ['Heating'],
     host: {
       name: 'Oliver Conner',
-      avatarUrl: 'https://url-to-image/image.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       isPro: false
     },
     images: [
-      'https://url-to-image/image.png'
+      'img/room.jpg, img/apartment-01.jpg, img/apartment-02.jpg, img/apartment-03.jpg, img/studio-01.jpg, img/studio-01.jpg'
     ],
     maxAdults: 4
   }
