@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react';
-import { City, Offer, OfferInfo } from './offers';
+import { City, OfferInfo } from './offers';
 
 export type TUseMap = {
   mapRef: MutableRefObject<HTMLElement | null>;
@@ -9,5 +9,5 @@ export type TUseMap = {
 export type MapProps = {
   city: City;
   offers: OfferInfo[];
-  selectedOffer: Offer | null;
+  selectedOffer: OfferInfo | null;
 };
