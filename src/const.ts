@@ -4,6 +4,8 @@ const LEAFLET_MAP_LAYERS = {
   voyager: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
 };
 
+const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+
 const CITY = {
   name: 'Amsterdam',
   location: {
@@ -33,4 +35,4 @@ const currentCustomIcon = new Icon({
 });
 
 
-export {LEAFLET_MAP_LAYERS, CITY, currentCustomIcon, defaultCustomIcon};
+export {LEAFLET_MAP_LAYERS, CITY, currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION};

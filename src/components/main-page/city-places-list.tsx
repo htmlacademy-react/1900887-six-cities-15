@@ -4,13 +4,14 @@ import { PlaceCardMark } from '../place-card-mark';
 import { Link } from 'react-router-dom';
 import { capitalize } from '../../utils';
 
-const CityPlace: FC<TOffer> = ({offer, onOfferHover}) => {
+const CityPlace: FC<TOffer> = ({offer, onOfferHover, onMouseOff}) => {
   const handleOfferHover = () => onOfferHover(offer);
+  const handleMouseOff = () => onMouseOff(null);
 
   const {id, title, type, price, isPremium, rating} = offer;
 
   return (
-    <article className="cities__card place-card" onMouseEnter={handleOfferHover}>
+    <article className="cities__card place-card" onMouseEnter={handleOfferHover} onMouseLeave={handleMouseOff}>
       {isPremium ? <PlaceCardMark /> : ''}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
@@ -45,8 +46,8 @@ const CityPlace: FC<TOffer> = ({offer, onOfferHover}) => {
   );
 };
 
-export const CityPlacesList: FC<TCityPlacesList> = ({offers, onOfferHover}) => (
+export const CityPlacesList: FC<TCityPlacesList> = ({offers, onOfferHover, onMouseOff}) => (
   <div className="cities__places-list places__list tabs__content">
-    {offers.map((item) => <CityPlace offer={item} key={item.id} onOfferHover={onOfferHover}/>)}
+    {offers.map((item) => <CityPlace offer={item} key={item.id} onOfferHover={onOfferHover} onMouseOff={onMouseOff}/>)}
   </div>
 );

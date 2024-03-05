@@ -46,13 +46,18 @@ type OfferOptional = {
   maxAdults: number;
 }
 
+type OfferEvent = {
+  onOfferHover: Dispatch<SetStateAction<OfferInfo | null>>;
+  onMouseOff: Dispatch<SetStateAction<OfferInfo | null>>;
+}
+
 export type AppProps = {offers: Offer[]; reviews: Review[]}
 
 export type Offer = OfferInfoExcluded & OfferOptional;
 
 export type Offers = {offers: OfferInfo[]};
 
-export type TOffer = {offer: OfferInfo; onOfferHover: Dispatch<SetStateAction<OfferInfo | null>>}
+export type TOffer = {offer: OfferInfo} & OfferEvent;
 
 export type OfferFeaturesProps = {type: string; bedrooms?: number; maxAdults?: number};
 
@@ -72,7 +77,7 @@ export type OfferRatingProps = {rating: number};
 
 export type OfferTitleProps = {title: string};
 
-export type TCityPlaces = Offers & {onOfferHover: Dispatch<SetStateAction<OfferInfo | null>>}
+export type TCityPlaces = Offers & OfferEvent;
 
 export type TCityPlacesList = TCityPlaces;
 

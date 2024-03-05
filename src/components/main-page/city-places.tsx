@@ -11,7 +11,7 @@ const CityPlaces: FC<TCityPlaces> = ({offers, onOfferHover}) => {
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{placesCount} places to stay in Amsterdam</b>
       <PlacesSorting/>
-      <CityPlacesList offers={offers} onOfferHover={onOfferHover}/>
+      <CityPlacesList offers={offers} onOfferHover={onOfferHover} onMouseOff={onOfferHover}/>
     </section>
   );
 };
