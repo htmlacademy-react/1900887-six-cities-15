@@ -3,7 +3,7 @@ import { Offer } from '../types/offers';
 const offers: Offer[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
-    title: 'Beautiful & luxurious studio at great location',
+    title: 'Beautiful & luxurious studio',
     type: 'apartment',
     price: 120,
     city: {
@@ -15,13 +15,14 @@ const offers: Offer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: true,
     isPremium: false,
     rating: 3,
+    previewImage: 'img/apartment-01.jpg',
     description: 'Cool place',
     bedrooms: 4,
     goods: ['Heating'],
@@ -41,7 +42,7 @@ const offers: Offer[] = [
     type: 'apartment',
     price: 10,
     city: {
-      name: 'Cologne',
+      name: 'Amsterdam',
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -49,13 +50,14 @@ const offers: Offer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: true,
     isPremium: false,
     rating: 2,
+    previewImage: 'img/apartment-01.jpg',
     description: 'Another cool place',
     bedrooms: 3,
     goods: ['Heating, WI-FI'],
@@ -75,7 +77,7 @@ const offers: Offer[] = [
     type: 'apartment',
     price: 100,
     city: {
-      name: 'Brussels',
+      name: 'Amsterdam',
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -83,13 +85,14 @@ const offers: Offer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 8
     },
     isFavorite: true,
     isPremium: false,
     rating: 1,
+    previewImage: 'img/apartment-01.jpg',
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 1,
     goods: [''],
@@ -109,7 +112,7 @@ const offers: Offer[] = [
     type: 'apartment',
     price: 110,
     city: {
-      name: 'Hamburg',
+      name: 'Amsterdam',
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -117,13 +120,14 @@ const offers: Offer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 8
     },
     isFavorite: false,
     isPremium: true,
     rating: 4,
+    previewImage: 'img/apartment-01.jpg',
     description: 'A quiet cozy and picturesque',
     bedrooms: 4,
     goods: ['Heating'],

@@ -1,6 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Review } from './reviews';
 
-type City = {
+export type City = {
   name: string;
   location: {
     latitude: number;
@@ -21,7 +22,7 @@ export type Host = {
   isPro: boolean;
 }
 
-type OfferInfo = {
+export type OfferInfo = {
   id: string;
   title: string;
   type: string;
@@ -45,15 +46,15 @@ type OfferOptional = {
   maxAdults: number;
 }
 
+export type AppProps = {offers: Offer[]; reviews: Review[]}
+
 export type Offer = OfferInfoExcluded & OfferOptional;
+
+export type Offers = {offers: OfferInfo[]};
 
 export type FavoriteOffers = {offers: OfferInfo[]};
 
-export type Offers = FavoriteOffers;
-
-export interface OffersInfo {offers: Offer[]; reviews: Review[]}
-
-export interface IOffer {offer: OfferInfo}
+export type TOffer = {offer: OfferInfo; onOfferHover: Dispatch<SetStateAction<OfferInfo>>}
 
 export type OfferFeaturesProps = {type: string; bedrooms?: number; maxAdults?: number};
 
@@ -73,3 +74,6 @@ export type OfferRatingProps = {rating: number};
 
 export type OfferTitleProps = {title: string};
 
+export type TCityPlaces = Offers & {onOfferHover: Dispatch<SetStateAction<OfferInfo>>}
+
+export type TCityPlacesList = TCityPlaces;

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { PlaceCardMark } from '../place-card-mark';
-import { IOffer } from '../../types/offers';
+import { TOffer } from '../../types/offers';
 import { FC } from 'react';
 
-export const FavoriteLocationItems: FC<IOffer> = ({offer}) => {
+export const FavoriteLocationItem: FC<TOffer> = ({offer}) => {
 
   const {id, isPremium, price, rating, title, previewImage} = offer;
 

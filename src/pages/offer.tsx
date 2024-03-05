@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Offer, OffersInfo } from '../types/offers';
+import { Offer, AppProps } from '../types/offers';
 import { useParams } from 'react-router-dom';
 import { NotFound } from '../components/404';
 import { Nullable } from 'vitest';
@@ -18,7 +18,7 @@ import {
   OfferNearPlaces } from '../components/offer/index';
 
 
-export const OfferComponent: FC<OffersInfo> = ({offers})=> {
+export const OfferComponent: FC<AppProps> = ({offers})=> {
   const params = useParams();
   const offer:Nullable<Offer> = offers.find((item) => item.id === params.id) || null;
 

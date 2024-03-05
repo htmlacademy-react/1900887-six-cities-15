@@ -1,21 +1,21 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Offers } from '../types/offers';
 import { CitiesTabs, CityPlaces } from '../components/main-page';
+import { Map } from '../components/map';
+import { CITY } from '../const';
 
-const CityMap = () => (
-  <div className="cities__right-section">
-    <section className="cities__map map"></section>
-  </div>
-);
+export const Main: FC<Offers> = ({offers}) => {
+  const [selectedOffer, setSelectedOffer] = useState(null);
 
-export const Main: FC<Offers> = ({offers}) => (
-  <main className="page__main page__main--index">
-    <CitiesTabs/>
-    <div className='cities'>
-      <div className="cities__places-container container">
-        <CityPlaces offers={offers}/>
-        <CityMap/>
+  return (
+    <main className="page__main page__main--index">
+      <CitiesTabs/>
+      <div className='cities'>
+        <div className="cities__places-container container">
+          <CityPlaces offers={offers} onOfferHover={setSelectedOffer}/>
+          <Map city={CITY} offers={offers} selectedOffer={selectedOffer}/>
+        </div>
       </div>
-    </div>
-  </main>
-);
+    </main>
+  );
+};
