@@ -2,7 +2,7 @@ enum AppRoutes {
   Root = '/',
   Offer = '/offer/:id',
   Login = '/login',
-  Favourites = '/favourites',
+  Favourites = '/favorites',
   Everything = '/*',
 }
 

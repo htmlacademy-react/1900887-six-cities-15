@@ -7,14 +7,14 @@ import {Login} from '../../pages/login.tsx';
 import {PrivateRoute} from '../../components/private-route.tsx';
 import {Main} from '../../pages/main.tsx';
 import { FC } from 'react';
-import { OffersInfo } from '../../types/offers.ts';
+import { AppProps } from '../../types/offers.ts';
 import { AppRoutes } from '../routes/routes.ts';
 
-export const App: FC<OffersInfo> = ({offers, reviews}) => (
+export const App: FC<AppProps> = ({offers, reviews}) => (
   <BrowserRouter>
     <Routes>
       <Route path={AppRoutes.Root} element={<Layout />}>
-        <Route index element={<Main offers={offers} />} />
+        <Route index element={<Main offers={offers}/>} />
         <Route path={AppRoutes.Login} element={<Login />} />
         <Route path={AppRoutes.Favourites} element={
           <PrivateRoute isAuth>
