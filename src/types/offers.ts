@@ -84,3 +84,5 @@ export type TCityPlacesList = TCityPlaces;
 export type FavoriteOffers = {offers: OfferInfo[]};
 
 export type FavoriteOffer = {offer: OfferInfo};
+
+export type TLocationItem = {city: City};
