@@ -1,4 +1,24 @@
-import { Fragment } from 'react';
+import { FC, Fragment } from 'react';
+import { CITIES } from '../../const';
+import { TLocationItem } from '../../types/offers';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectCity } from '../../store/action';
+
+const LocationItem: FC<TLocationItem> = ({ city }) => {
+  const { name } = city;
+  const dispatch = useAppDispatch();
+  const handleClick = () => dispatch(selectCity({ city }));
+  const currentCity = useAppSelector((state) => state.city.name);
+
+  return (
+    <li className="locations__item" onClick={handleClick}>
+      <a className={currentCity === name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}>
+        <span>{name}</span>
+      </a>
+    </li>
+  );
+};
+
 
 export const CitiesTabs = () => (
   <Fragment>
@@ -6,38 +26,10 @@ export const CitiesTabs = () => (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Paris</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Cologne</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Brussels</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item tabs__item--active">
-              <span>Amsterdam</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Hamburg</span>
-            </a>
-          </li>
-          <li className="locations__item">
-            <a className="locations__item-link tabs__item" href="#">
-              <span>Dusseldorf</span>
-            </a>
-          </li>
+          {CITIES.map((city) => <LocationItem key={city.name} city={city} />)}
         </ul>
       </section>
     </div>
   </Fragment>
 );
+

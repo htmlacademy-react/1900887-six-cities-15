@@ -5,9 +5,9 @@ import { useMap } from '../app/hooks/useMap';
 import { MapProps } from '../types/map';
 import { currentCustomIcon, defaultCustomIcon } from '../const';
 
-export const Map: FC<MapProps> = ({city, offers, selectedOffer}) => {
+export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
   const mapRef = useRef(null);
-  const map = useMap({mapRef, city});
+  const map = useMap({ mapRef, city });
 
   useEffect(() => {
     if (map) {
@@ -32,7 +32,14 @@ export const Map: FC<MapProps> = ({city, offers, selectedOffer}) => {
     }
   }, [map, offers, selectedOffer]);
 
-  return(
+  useEffect(() => {
+    if (map) {
+      map.panTo({ lat: city.location.latitude, lng: city.location.longitude });
+      map.setZoom(city.location.zoom);
+    }
+  });
+
+  return (
     <div className="cities__right-section">
       <section className="cities__map map" ref={mapRef}></section>
     </div>

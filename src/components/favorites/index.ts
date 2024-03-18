@@ -1,2 +1,2 @@
-export {FavoriteLocationItem as FavoriteLocationItems} from './favorite-location-items';
+export {FavoriteLocationItem} from './favorite-location-item';
 export {FavoritesList} from './favorites-list';

@@ -55,9 +55,11 @@ export type AppProps = {offers: Offer[]; reviews: Review[]}
 
 export type Offer = OfferInfoExcluded & OfferOptional;
 
-export type Offers = {offers: OfferInfo[]};
+export type Offers = {offers: Offer[]};
 
-export type TOffer = {offer: OfferInfo} & OfferEvent;
+export type TOffers = Offer[] | null;
+
+export type TOffer = {offer: Offer} & OfferEvent;
 
 export type OfferFeaturesProps = {type: string; bedrooms?: number; maxAdults?: number};
 
@@ -77,10 +79,14 @@ export type OfferRatingProps = {rating: number};
 
 export type OfferTitleProps = {title: string};
 
-export type TCityPlaces = Offers & OfferEvent;
+export type TCityPlaces = TLocationItem & Offers & OfferEvent;
 
-export type TCityPlacesList = TCityPlaces;
+export type TCityPlacesList = Offers & OfferEvent;
 
 export type FavoriteOffers = {offers: OfferInfo[]};
 
 export type FavoriteOffer = {offer: OfferInfo};
+
+export type TLocationItem = {city: City};
+
+export type TCities = {selectedCity: City; offers: Offer[]; selectedOffer: OfferInfo | null} & OfferEvent;
