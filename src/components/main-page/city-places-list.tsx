@@ -4,18 +4,18 @@ import { PlaceCardMark } from '../place-card-mark';
 import { Link } from 'react-router-dom';
 import { capitalize } from '../../utils';
 
-const CityPlace: FC<TOffer> = ({offer, onOfferHover, onMouseOff}) => {
+const CityPlace: FC<TOffer> = ({ offer, onOfferHover, onMouseOff }) => {
   const handleOfferHover = () => onOfferHover(offer);
   const handleMouseOff = () => onMouseOff(null);
 
-  const {id, title, type, price, isPremium, rating} = offer;
+  const { id, title, type, price, isPremium, rating } = offer;
 
   return (
     <article className="cities__card place-card" onMouseEnter={handleOfferHover} onMouseLeave={handleMouseOff}>
       {isPremium ? <PlaceCardMark /> : ''}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src='img/apartment-01.jpg' width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src='img/apartment-01.jpg' width="260" height="200" alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">
@@ -33,7 +33,7 @@ const CityPlace: FC<TOffer> = ({offer, onOfferHover, onMouseOff}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating * 20}%`}}></span>
+            <span style={{ width: `${rating * 20}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -46,8 +46,8 @@ const CityPlace: FC<TOffer> = ({offer, onOfferHover, onMouseOff}) => {
   );
 };
 
-export const CityPlacesList: FC<TCityPlacesList> = ({offers, onOfferHover, onMouseOff}) => (
+export const CityPlacesList: FC<TCityPlacesList> = ({ offers, onOfferHover, onMouseOff }) => (
   <div className="cities__places-list places__list tabs__content">
-    {offers.map((item) => <CityPlace offer={item} key={item.id} onOfferHover={onOfferHover} onMouseOff={onMouseOff}/>)}
+    {offers.map((offer) => <CityPlace offer={offer} key={offer.id} onOfferHover={onOfferHover} onMouseOff={onMouseOff} />)}
   </div>
 );
