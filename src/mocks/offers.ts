@@ -22,7 +22,7 @@ const offers: Offer[] = [
     isFavorite: true,
     isPremium: false,
     rating: 3,
-    previewImage: 'img/apartment-01.jpg',
+    previewImage: 'img/apartment-01.jg',
     description: 'Cool place',
     bedrooms: 4,
     goods: ['Heating'],
