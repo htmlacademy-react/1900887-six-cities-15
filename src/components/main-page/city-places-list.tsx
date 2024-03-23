@@ -3,6 +3,7 @@ import { TOffer, TCityPlacesList } from '../../types/offers';
 import { PlaceCardMark } from '../place-card-mark';
 import { Link } from 'react-router-dom';
 import { capitalize } from '../../utils';
+import { AppRoutes } from '../../app/routes/routes';
 
 const CityPlace: FC<TOffer> = ({ offer, onOfferHover, onMouseOff }) => {
   const handleOfferHover = () => onOfferHover(offer);
@@ -14,7 +15,7 @@ const CityPlace: FC<TOffer> = ({ offer, onOfferHover, onMouseOff }) => {
     <article className="cities__card place-card" onMouseEnter={handleOfferHover} onMouseLeave={handleMouseOff}>
       {isPremium ? <PlaceCardMark /> : ''}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${id}`}>
+        <Link to={`${AppRoutes.Offer}/${id}`}>
           <img className="place-card__image" src='img/apartment-01.jpg' width="260" height="200" alt="Place image" />
         </Link>
       </div>

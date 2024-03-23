@@ -1,8 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
-import { City } from '../types/offers';
-import { Offer } from '../types/offers';
+import { City, Offer } from '../types/offers';
+import { AuthorizationStatus } from '../const';
+import { Nullable } from 'vitest';
 
 const selectCity = createAction<{city: City}>('app/selectCity');
-const insertOffer = createAction<{offer: Offer}>('offer/insertOffer');
+const insertOffer = createAction<{offer: Offer}>('offers/insertOffer');
+const loadOffers = createAction<Offer[]>('offers/loadOffers');
+const getOffer = createAction<Nullable<Offer>>('offers/getOffer');
+const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export {selectCity, insertOffer};
+export {selectCity, insertOffer, loadOffers, requireAuthorization, getOffer};
