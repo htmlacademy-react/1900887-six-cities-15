@@ -66,6 +66,18 @@ const CITIES = [
   }
 ];
 
+export enum AuthorizationStatus {
+  AUTH = 'AUTH',
+  NO_AUTH = 'NO_AUTH',
+  UNKNOWN = 'UNKNOWN'
+}
+
+export enum APIRoutes {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout'
+}
+
 const URL_MARKER_DEFAULT =
 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
@@ -85,5 +97,17 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
+const METHODS = {
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT'
+};
 
-export {LEAFLET_MAP_LAYERS, DEFAULT_CITY as CITY, CITIES, currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION};
+const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
+
+const SERVER_TIMEOUT = 5000;
+
+
+export {LEAFLET_MAP_LAYERS,
+  DEFAULT_CITY, CITIES, METHODS, BASE_URL, SERVER_TIMEOUT,
+  currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION};
