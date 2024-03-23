@@ -18,18 +18,25 @@ import { useParams } from 'react-router-dom';
 import { fetchOfferAction } from '../store/api-actions';
 import { useEffect } from 'react';
 import { getOffer } from '../store/action';
+import { Loading } from '../components/spinner';
 
 
 export const OfferComponent = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const offer = useAppSelector((state) => state.selectedOffer);
+  const isLoading = useAppSelector((state) => state.isLoading);
+
   useEffect(() => {
     dispatch(fetchOfferAction(id));
     return () => {
       dispatch(getOffer(null));
     };
   }, [id, dispatch]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (!offer) {
     return (<NotFound />);

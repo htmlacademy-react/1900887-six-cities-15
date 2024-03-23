@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk} from '../types/state';
 import { Offer } from '../types/offers';
-import { getOffer, loadOffers, requireAuthorization } from './action';
+import { getOffer, loadOffers, requireAuthorization, setIsLoading } from './action';
 import { APIRoutes, AuthorizationStatus } from '../const';
 import { AuthData, UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -15,8 +15,10 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, TAsyncThunk>(
 
 export const fetchOfferAction = createAsyncThunk<void, string | undefined, TAsyncThunk>('data/fetchOffer',
   async (offerId: string | undefined, {dispatch, extra: api}) => {
+    dispatch(setIsLoading(true));
     const {data} = await api.get<Offer>(`/offers/${offerId}`);
     dispatch(getOffer(data));
+    dispatch(setIsLoading(false));
   }
 );
 

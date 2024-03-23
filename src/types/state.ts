@@ -13,6 +13,7 @@ export type InitialState = {
   offers: Nullable<Offer[]>;
   selectedOffer: Nullable<Offer>;
   authorizationStatus: AuthorizationStatus;
+  isLoading: boolean;
 };
 
 export type TAsyncThunk = {dispatch: AppDispatch; state: State; extra: AxiosInstance};

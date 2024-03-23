@@ -9,18 +9,12 @@ import { Nullable } from 'vitest';
 export const Main = () => {
   const [selectedOffer, setSelectedOffer] = useState<OfferInfo | null>(null);
   const selectedCity = useAppSelector((state) => state.city);
-
-  const offers: Nullable<Offer[]> = useAppSelector((state) => state.offers);
-  let filteredOffers: Offer[] = [];
-
-  if (offers) {
-    filteredOffers = offers.filter((offer) => offer.city.name === selectedCity.name);
-  }
+  const filteredOffers: Nullable<Offer[]> = useAppSelector((state) => state.offers)?.filter((offer) => offer.city.name === selectedCity.name);
 
   return (
     <main className="page__main page__main--index">
       <CitiesTabs />
-      {filteredOffers.length ?
+      {filteredOffers ?
         <Cities selectedCity={selectedCity} offers={filteredOffers} onMouseOff={setSelectedOffer} onOfferHover={setSelectedOffer} selectedOffer={selectedOffer} /> :
         <MainEmpty city={selectedCity} />}
     </main>
