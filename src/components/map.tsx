@@ -12,6 +12,7 @@ export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,

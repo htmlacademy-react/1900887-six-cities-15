@@ -72,6 +72,11 @@ export enum AuthorizationStatus {
   UNKNOWN = 'UNKNOWN'
 }
 
+export enum ERRORS {
+  INVALID_PASSWORD = 'Password is invalid. It must contain at least one digit and one character.',
+  INVALID_EMAIL = 'Email is invalid. It must be at least 1 character long.'
+}
+
 export enum APIRoutes {
   Offers = '/offers',
   Login = '/login',
@@ -106,8 +111,9 @@ const METHODS = {
 const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
 
 const SERVER_TIMEOUT = 5000;
+const ERROR_TIMEOUT = 2000;
 
 
 export {LEAFLET_MAP_LAYERS,
   DEFAULT_CITY, CITIES, METHODS, BASE_URL, SERVER_TIMEOUT,
-  currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION};
+  currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION, ERROR_TIMEOUT};

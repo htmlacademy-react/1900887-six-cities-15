@@ -14,6 +14,11 @@ export type InitialState = {
   selectedOffer: Nullable<Offer>;
   authorizationStatus: AuthorizationStatus;
   isLoading: boolean;
+  error: null | string;
 };
 
 export type TAsyncThunk = {dispatch: AppDispatch; state: State; extra: AxiosInstance};
+
+export type TSign = {
+  authorizationStatus: string;
+};

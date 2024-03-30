@@ -9,5 +9,7 @@ const loadOffers = createAction<Offer[]>('offers/loadOffers');
 const getOffer = createAction<Nullable<Offer>>('offers/getOffer');
 const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 const setIsLoading = createAction<boolean>('offers/isLoading');
+const setError = createAction<string | null>('app/setError');
+const selectOffer = createAction<Nullable<Offer>>('app/selectOffer');
 
-export {selectCity, insertOffer, loadOffers, requireAuthorization, getOffer, setIsLoading};
+export {selectCity, insertOffer, loadOffers, requireAuthorization, getOffer, setIsLoading, setError, selectOffer};

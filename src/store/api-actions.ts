@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk} from '../types/state';
 import { Offer } from '../types/offers';
-import { getOffer, loadOffers, requireAuthorization, setIsLoading } from './action';
-import { APIRoutes, AuthorizationStatus } from '../const';
+import { getOffer, loadOffers, requireAuthorization, setError, setIsLoading } from './action';
+import { APIRoutes, AuthorizationStatus, ERROR_TIMEOUT } from '../const';
 import { AuthData, UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
+import { store } from '.';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, TAsyncThunk>('data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
@@ -47,4 +48,13 @@ export const logoutAction = createAsyncThunk<void, undefined, TAsyncThunk>('user
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
   },
+);
+
+export const clearErrorAction = createAsyncThunk('app/clearError',
+  () => {
+    setTimeout(
+      () => store.dispatch(setError(null)),
+      ERROR_TIMEOUT
+    );
+  }
 );

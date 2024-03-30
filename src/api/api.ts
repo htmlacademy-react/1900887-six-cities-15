@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, {AxiosInstance} from 'axios';
 import { BASE_URL, SERVER_TIMEOUT } from '../const';
 import { getToken } from '../services/token';
 

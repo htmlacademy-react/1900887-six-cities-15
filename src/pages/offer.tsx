@@ -19,13 +19,14 @@ import { fetchOfferAction } from '../store/api-actions';
 import { useEffect } from 'react';
 import { getOffer } from '../store/action';
 import { Loading } from '../components/spinner';
+import { getLoadingState, getSelectedOffer } from '../store/selectors';
 
 
 export const OfferComponent = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const offer = useAppSelector((state) => state.selectedOffer);
-  const isLoading = useAppSelector((state) => state.isLoading);
+  const offer = useAppSelector(getSelectedOffer);
+  const isLoading = useAppSelector(getLoadingState);
 
   useEffect(() => {
     dispatch(fetchOfferAction(id));
@@ -42,7 +43,7 @@ export const OfferComponent = () => {
     return (<NotFound />);
   }
 
-  const { title, type, price, isPremium, rating, goods, bedrooms, maxAdults, host: { name, avatarUrl, isPro }, description, images } = offer;
+  const { title, type, price, isPremium, isFavorite, rating, goods, bedrooms, maxAdults, host: { name, avatarUrl, isPro }, description, images } = offer;
 
   return (
     <main className="page__main page__main--offer">
@@ -50,8 +51,8 @@ export const OfferComponent = () => {
         <OfferGallery images={images} />
         <div className="offer__container container">
           <div className="offer__wrapper">
-            {isPremium ? <OfferMark /> : ''}
-            <OfferTitle title={title} />
+            {isPremium && <OfferMark />}
+            <OfferTitle title={title} isFavorite={isFavorite} />
             <OfferRating rating={rating} />
             <OfferFeatures bedrooms={bedrooms} type={type} maxAdults={maxAdults} />
             <OfferPrice price={price} />
