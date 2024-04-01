@@ -1,12 +1,12 @@
 import { Icon } from 'leaflet';
 
-const LEAFLET_MAP_LAYERS = {
+export const LEAFLET_MAP_LAYERS = {
   voyager: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
 };
 
-const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+export const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-const DEFAULT_CITY = {
+export const DEFAULT_CITY = {
   name: 'Paris',
   location: {
     latitude: 48.85661,
@@ -15,7 +15,7 @@ const DEFAULT_CITY = {
   }
 };
 
-const CITIES = [
+export const CITIES = [
   {
     name: 'Paris',
     location: {
@@ -83,37 +83,32 @@ export enum APIRoutes {
   Logout = '/logout'
 }
 
-const URL_MARKER_DEFAULT =
+export const URL_MARKER_DEFAULT =
 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
 
 export const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-const defaultCustomIcon = new Icon({
+export const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
-const currentCustomIcon = new Icon({
+export const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
-const METHODS = {
+export const METHODS = {
   GET: 'GET',
   POST: 'POST',
   PUT: 'PUT'
 };
 
-const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
+export const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
 
-const SERVER_TIMEOUT = 5000;
-const ERROR_TIMEOUT = 2000;
-
-
-export {LEAFLET_MAP_LAYERS,
-  DEFAULT_CITY, CITIES, METHODS, BASE_URL, SERVER_TIMEOUT,
-  currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION, ERROR_TIMEOUT};
+export const SERVER_TIMEOUT = 5000;
+export const ERROR_TIMEOUT = 2000;

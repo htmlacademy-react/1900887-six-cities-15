@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk} from '../types/state';
 import { Offer } from '../types/offers';
-import { getOffer, loadOffers, requireAuthorization, setError, setIsLoading } from './action';
+import { getOffer, loadOffers, requireAuthorization, setError, setIsLoading } from '../store/action';
 import { APIRoutes, AuthorizationStatus, ERROR_TIMEOUT } from '../const';
 import { AuthData, UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
-import { store } from '.';
+import { store } from '../store';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, TAsyncThunk>('data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
@@ -28,7 +28,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, TAsyncThunk>('u
     try {
       await api.get(APIRoutes.Login);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-    } catch {
+    } catch (err) {
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     }
   }

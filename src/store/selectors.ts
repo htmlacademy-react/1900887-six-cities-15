@@ -21,3 +21,13 @@ export const getLoadingState = createSelector(
   (state: State) => state.isLoading,
   (isLoading) => isLoading
 );
+
+export const getAuthorizationStatus = createSelector(
+  (state: State) => state.authorizationStatus,
+  (authorizationStatus) => authorizationStatus
+);
+
+export const getErrorMessage = createSelector(
+  (state: State) => state.error,
+  (error) => error
+);

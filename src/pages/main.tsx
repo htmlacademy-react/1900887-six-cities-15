@@ -5,7 +5,7 @@ import { MainEmpty } from './main-empty';
 import { Cities } from '../components/main-page/cities';
 import { Nullable } from 'vitest';
 import { getCity, getOffersByCity } from '../store/selectors';
-import { Loading } from '../components/spinner';
+import { Loading } from '../components/spinner/spinner';
 
 export const Main = () => {
   const selectedCity = useAppSelector(getCity);
