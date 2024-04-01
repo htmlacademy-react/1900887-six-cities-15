@@ -4,6 +4,7 @@ import { FC, useEffect, useRef } from 'react';
 import { useMap } from '../app/hooks/useMap';
 import { MapProps } from '../types/map';
 import { currentCustomIcon, defaultCustomIcon } from '../const';
+import { roundNumber } from '../utils';
 
 export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
   const mapRef = useRef(null);
@@ -12,18 +13,19 @@ export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+
       offers.forEach((offer) => {
+        const lat = roundNumber(offer.location.latitude);
+        const lng = roundNumber(offer.location.longitude);
+
         const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude
+          lat: lat,
+          lng: lng
         });
 
         marker
-          .setIcon(
-            selectedOffer !== undefined && offer.title === selectedOffer?.title
-              ? currentCustomIcon
-              : defaultCustomIcon
-          ).addTo(markerLayer);
+          .setIcon((selectedOffer && offer.id === selectedOffer.id) ? currentCustomIcon : defaultCustomIcon)
+          .addTo(markerLayer);
       });
 
       return () => {

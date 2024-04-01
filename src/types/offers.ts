@@ -47,8 +47,7 @@ type OfferOptional = {
 }
 
 type OfferEvent = {
-  onOfferHover: Dispatch<SetStateAction<OfferInfo | null>>;
-  onMouseOff: Dispatch<SetStateAction<OfferInfo | null>>;
+  onMouseEvent: Dispatch<SetStateAction<OfferInfo | null>>;
 }
 
 export type AppProps = {offers: Offer[]; reviews: Review[]}
@@ -77,7 +76,7 @@ export type OfferPriceProps = {price: number};
 
 export type OfferRatingProps = {rating: number};
 
-export type OfferTitleProps = {title: string};
+export type OfferTitleProps = {title: string; isFavorite: boolean};
 
 export type TCityPlaces = TLocationItem & Offers & OfferEvent;
 
@@ -89,4 +88,4 @@ export type FavoriteOffer = {offer: OfferInfo};
 
 export type TLocationItem = {city: City};
 
-export type TCities = {selectedCity: City; offers: Offer[]; selectedOffer: OfferInfo | null} & OfferEvent;
+export type TCities = {selectedCity: City; offers: Offer[]}

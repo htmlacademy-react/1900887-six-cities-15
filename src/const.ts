@@ -1,12 +1,12 @@
 import { Icon } from 'leaflet';
 
-const LEAFLET_MAP_LAYERS = {
+export const LEAFLET_MAP_LAYERS = {
   voyager: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
 };
 
-const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+export const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-const DEFAULT_CITY = {
+export const DEFAULT_CITY = {
   name: 'Paris',
   location: {
     latitude: 48.85661,
@@ -15,7 +15,7 @@ const DEFAULT_CITY = {
   }
 };
 
-const CITIES = [
+export const CITIES = [
   {
     name: 'Paris',
     location: {
@@ -66,24 +66,49 @@ const CITIES = [
   }
 ];
 
-const URL_MARKER_DEFAULT =
+export enum AuthorizationStatus {
+  AUTH = 'AUTH',
+  NO_AUTH = 'NO_AUTH',
+  UNKNOWN = 'UNKNOWN'
+}
+
+export enum ERRORS {
+  INVALID_PASSWORD = 'Password is invalid. It must contain at least one digit and one character.',
+  INVALID_EMAIL = 'Email is invalid. It must be at least 1 character long.'
+}
+
+export enum APIRoutes {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout'
+}
+
+export const URL_MARKER_DEFAULT =
 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
 
 export const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-const defaultCustomIcon = new Icon({
+export const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
-const currentCustomIcon = new Icon({
+export const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
+export const METHODS = {
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT'
+};
 
-export {LEAFLET_MAP_LAYERS, DEFAULT_CITY as CITY, CITIES, currentCustomIcon, defaultCustomIcon, MAP_ATTRIBUTION};
+export const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
+
+export const SERVER_TIMEOUT = 5000;
+export const ERROR_TIMEOUT = 2000;
