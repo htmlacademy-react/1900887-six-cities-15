@@ -2,7 +2,7 @@ import { useAppSelector } from '../app/hooks/index.ts';
 import { getAuthorizationStatus } from '../store/selectors.ts';
 import { getIsLoginPage } from '../utils.ts';
 import { Logo } from './logo.tsx';
-import { Navigation } from './navigation.tsx';
+import { Navigation } from './navigation/navigation.tsx';
 
 export const Header = () => {
   const authStatus = useAppSelector(getAuthorizationStatus);

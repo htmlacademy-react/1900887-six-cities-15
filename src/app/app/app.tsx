@@ -8,22 +8,27 @@ import { PrivateRoute } from '../../components/private-route.tsx';
 import { Main } from '../../pages/main.tsx';
 import { AppRoutes } from '../routes/routes.ts';
 import { OfferComponent } from '../../pages/offer.tsx';
+import { useAppSelector } from '../hooks/index.ts';
+import { getAuthorizationStatus } from '../../store/selectors.ts';
 
-export const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path={AppRoutes.Root} element={<Layout />}>
-        <Route index element={<Main />} />
-        <Route path={AppRoutes.Login} element={<Login />} />
-        <Route path={AppRoutes.Favourites} element={
-          <PrivateRoute isAuth>
-            <Favorites />
-          </PrivateRoute>
-        }
-        />
-        <Route path={`${AppRoutes.Offer}/:id`} element={<OfferComponent />} />
-      </Route>
-      <Route path={AppRoutes.Everything} element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>
-);
+export const App = () => {
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path={AppRoutes.Root} element={<Layout />}>
+          <Route index element={<Main />} />
+          <Route path={AppRoutes.Login} element={<Login />} />
+          <Route path={AppRoutes.Favourites} element={
+            <PrivateRoute authStatus={authStatus}>
+              <Favorites />
+            </PrivateRoute>
+          }
+          />
+          <Route path={`${AppRoutes.Offer}/:id`} element={<OfferComponent />} />
+        </Route>
+        <Route path={AppRoutes.Everything} element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};

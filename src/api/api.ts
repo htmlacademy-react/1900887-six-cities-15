@@ -2,8 +2,22 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { BASE_URL, SERVER_TIMEOUT } from '../const';
 import { getToken } from '../services/token';
 import { StatusCodes } from 'http-status-codes';
-import { useAppDispatch } from '../app/hooks';
-import { setError } from '../store/action';
+import { proccessErrorHandle } from '../services/proccessErrorHandle';
+
+type TErrorType = {
+  type: string;
+  message: string;
+}
+
+
+const StatusCodeMapping: Record<number, boolean> = {
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true
+};
+
+
+const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
 export const createApi = (): AxiosInstance => {
   const api = axios.create({
@@ -16,7 +30,7 @@ export const createApi = (): AxiosInstance => {
       const token = getToken();
 
       if (token && config.headers) {
-        config.headers['X-Token'] = token;
+        config.headers['x-token'] = token;
       }
 
       return config;
@@ -24,14 +38,14 @@ export const createApi = (): AxiosInstance => {
   );
 
   api.interceptors.response.use(
-    (response: AxiosResponse) => response, (error: AxiosError) => {
-      const status = error.response?.status || 500;
-      const dispatch = useAppDispatch();
-      switch(status) {
-        case StatusCodes.UNAUTHORIZED: {
-          dispatch(setError(error.message));
-        }
+    (response: AxiosResponse) => response,
+    (error: AxiosError<TErrorType>) => {
+      if (error.response && shouldDisplayError(error.response)) {
+        const detailMessage = (error.response.data);
+
+        proccessErrorHandle(detailMessage.message);
       }
+      throw error;
     }
   );
   return api;
