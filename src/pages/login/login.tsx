@@ -1,8 +1,8 @@
 import { FormEventHandler, useRef } from 'react';
-import { loginAction } from '../api/api-actions';
-import { useAppDispatch } from '../app/hooks';
+import { loginAction } from '../../api/api-actions';
+import { useAppDispatch } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
-import { AppRoutes } from '../app/routes/routes';
+import { AppRoutes } from '../../app/routes/routes';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
