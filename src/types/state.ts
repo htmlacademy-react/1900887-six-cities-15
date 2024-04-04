@@ -8,6 +8,14 @@ export type AppDispatch = typeof store.dispatch;
 
 export type State = ReturnType<typeof store.getState>;
 
+export type TAuthInfo = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+  email: string;
+  token: string;
+}
+
 export type InitialState = {
   city: City;
   offers: Nullable<Offer[]>;
@@ -15,6 +23,7 @@ export type InitialState = {
   authorizationStatus: AuthorizationStatus;
   isLoading: boolean;
   error: null | string;
+  currentUser: Nullable<TAuthInfo>;
 };
 
 export type TAsyncThunk = {dispatch: AppDispatch; state: State; extra: AxiosInstance};
