@@ -31,3 +31,8 @@ export const getErrorMessage = createSelector(
   (state: State) => state.error,
   (error) => error
 );
+
+export const getCurrentUser = createSelector(
+  (state: State) => state.currentUser,
+  (user) => user
+);

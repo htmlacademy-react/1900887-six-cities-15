@@ -1,4 +1,4 @@
-import { NotFound } from '../components/404';
+import { NotFound } from '../../components/404';
 
 import {
   OfferGallery,
@@ -12,14 +12,14 @@ import {
   OfferPrice,
   OfferReviews,
   OfferNearPlaces
-} from '../components/offer/index';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+} from '../../components/offer/index';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useParams } from 'react-router-dom';
-import { fetchOfferAction } from '../api/api-actions';
+import { fetchOfferAction } from '../../api/api-actions';
 import { useEffect } from 'react';
-import { getOffer } from '../store/action';
-import { Loading } from '../components/spinner/spinner';
-import { getLoadingState, getSelectedOffer } from '../store/selectors';
+import { getOffer } from '../../store/action';
+import { Loading } from '../../components/spinner/spinner';
+import { getLoadingState, getSelectedOffer } from '../../store/selectors';
 
 
 export const OfferComponent = () => {

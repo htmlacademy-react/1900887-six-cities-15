@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TMainEmpty } from '../types/map';
+import { TMainEmpty } from '../../types/map';
 
 export const MainEmpty: FC<TMainEmpty> = ({ city }) => {
   const { name } = city;
