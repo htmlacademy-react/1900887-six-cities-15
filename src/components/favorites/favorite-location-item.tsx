@@ -3,9 +3,9 @@ import { PlaceCardMark } from '../place-card-mark';
 import { FavoriteOffer } from '../../types/offers';
 import { FC } from 'react';
 
-export const FavoriteLocationItem: FC<FavoriteOffer> = ({offer}) => {
+export const FavoriteLocationItem: FC<FavoriteOffer> = ({ offer }) => {
 
-  const {id, isPremium, price, rating, title, previewImage} = offer;
+  const { id, isPremium, price, rating, title, previewImage } = offer;
 
   return (
     <li className="favorites__locations-items">
@@ -18,10 +18,10 @@ export const FavoriteLocationItem: FC<FavoriteOffer> = ({offer}) => {
       </div>
       <div className="favorites__places">
         <article className="favorites__card place-card">
-          {isPremium ? <PlaceCardMark/> : ''}
+          {isPremium ? <PlaceCardMark /> : ''}
           <div className="favorites__image-wrapper place-card__image-wrapper">
             <Link to={`/offer/${id}`}>
-              <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>
+              <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image" />
             </Link>
           </div>
           <div className="favorites__card-info place-card__info">
@@ -39,7 +39,7 @@ export const FavoriteLocationItem: FC<FavoriteOffer> = ({offer}) => {
             </div>
             <div className="place-card__rating rating">
               <div className="place-card__stars rating__stars">
-                <span style={{width: 20 * rating}}></span>
+                <span style={{ width: 20 * rating }}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
             </div>

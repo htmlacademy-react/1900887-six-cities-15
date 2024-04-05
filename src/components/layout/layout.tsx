@@ -1,8 +1,8 @@
-import { Header } from './header.tsx';
+import { Header } from '../header';
 import { Outlet, useLocation } from 'react-router-dom';
-import { getClassNameByLocation } from '../utils.ts';
+import { getClassNameByLocation } from '../../utils.ts';
 
-export const Layout = (): JSX.Element => {
+export const Layout = () => {
   const location = useLocation();
   const className = getClassNameByLocation(location.pathname);
   return (

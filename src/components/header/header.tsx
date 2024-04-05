@@ -1,8 +1,8 @@
-import { useAppSelector } from '../app/hooks/index.ts';
-import { getAuthorizationStatus } from '../store/selectors.ts';
-import { getIsLoginPage } from '../utils.ts';
-import { Logo } from './logo.tsx';
-import { Navigation } from './navigation/navigation.tsx';
+import { useAppSelector } from '../../app/hooks/index.ts';
+import { getAuthorizationStatus } from '../../store/selectors.ts';
+import { getIsLoginPage } from '../../utils.ts';
+import { Logo } from '../logo';
+import { Navigation } from '../navigation';
 
 export const Header = () => {
   const authStatus = useAppSelector(getAuthorizationStatus);

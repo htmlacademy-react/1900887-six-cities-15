@@ -9,6 +9,7 @@ type TErrorModal = {
 export const ErrorModal = ({ error }: TErrorModal) => {
   const dispatch = useAppDispatch();
   const handleClick = () => dispatch(setError(null));
+
   return (
     <div className={error ? 'overlay' : 'overlay hidden'}>
       <section className='modal'>
