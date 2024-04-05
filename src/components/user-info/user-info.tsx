@@ -1,4 +1,4 @@
-import { TAuthInfo } from '../types/state';
+import { TAuthInfo } from '../../types/state';
 type TUserInfo = {
   user: TAuthInfo;
 }

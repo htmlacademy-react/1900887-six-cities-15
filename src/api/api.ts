@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { BASE_URL, SERVER_TIMEOUT } from '../const';
-import { getToken } from '../services/token';
+import { getToken } from '../services';
 import { StatusCodes } from 'http-status-codes';
 import { proccessErrorHandle } from '../services/proccessErrorHandle';
 

@@ -4,9 +4,8 @@ import { Offer } from '../types/offers';
 import { getOffer, loadOffers, requireAuthorization, saveCurrentUser, setError, setIsLoading } from '../store/action';
 import { APIRoutes, AuthorizationStatus, ERROR_TIMEOUT } from '../const';
 import { AuthData, UserData } from '../types/user-data';
-import { dropToken, saveToken } from '../services/token';
 import { store } from '../store';
-import { dropUser, saveUser } from '../services/user';
+import { dropUser, saveUser, dropToken, saveToken } from '../services';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, TAsyncThunk>('data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {

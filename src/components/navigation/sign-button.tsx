@@ -31,6 +31,4 @@ const LogoutButton = () => {
   );
 };
 
-export const SignButton = ({ authStatus }: TSignButton) => (
-  authStatus === AuthorizationStatus.AUTH ? <LogoutButton /> : <LoginButton />
-);
+export const SignButton = ({ authStatus }: TSignButton) => (authStatus === AuthorizationStatus.AUTH ? <LogoutButton /> : <LoginButton />);

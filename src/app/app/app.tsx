@@ -1,13 +1,12 @@
-import { Layout } from '../../components/layout.tsx';
+import { Layout } from '../../components/layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { NotFound } from '../../components/404.tsx';
+import { NotFound } from '../../components/404';
 import { Favorites } from '../../pages/favorites/index';
-// import { OfferComponent } from '../../pages/offer.tsx';
-import { Login } from '../../pages/login/login.tsx';
-import { PrivateRoute } from '../../components/private-route.tsx';
-import { Main } from '../../pages/main/main.tsx';
+import { Login } from '../../pages/login';
+import { PrivateRoute } from '../../components/private-route';
+import { Main } from '../../pages/main';
 import { AppRoutes } from '../routes/routes.ts';
-import { OfferComponent } from '../../pages/offer/offer.tsx';
+import { OfferComponent } from '../../pages/offer';
 import { useAppSelector } from '../hooks/index.ts';
 import { getAuthorizationStatus } from '../../store/selectors.ts';
 

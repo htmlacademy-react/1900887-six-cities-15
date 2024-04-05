@@ -1,10 +1,10 @@
 import { Marker, layerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { FC, useEffect, useRef } from 'react';
-import { useMap } from '../app/hooks/useMap';
-import { MapProps } from '../types/map';
-import { currentCustomIcon, defaultCustomIcon } from '../const';
-import { roundNumber } from '../utils';
+import { useMap } from '../../app/hooks/useMap';
+import { MapProps } from '../../types/map';
+import { currentCustomIcon, defaultCustomIcon } from '../../const';
+import { roundNumber } from '../../utils';
 
 export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
   const mapRef = useRef(null);

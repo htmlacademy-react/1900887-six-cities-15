@@ -1,12 +1,12 @@
 import { Offer } from '../../types/offers';
 import { CitiesTabs } from '../../components/main-page';
 import { useAppSelector } from '../../app/hooks';
-import { MainEmpty } from '../main-empty/main-empty';
+import { MainEmpty } from '../main-empty';
 import { Cities } from '../../components/main-page/cities';
 import { Nullable } from 'vitest';
 import { getCity, getErrorMessage, getOffersByCity } from '../../store/selectors';
 import { Loading } from '../../components/spinner/spinner';
-import { ErrorModal } from '../../components/error/error';
+import { ErrorModal } from '../../components/error';
 
 export const Main = () => {
   const error = useAppSelector(getErrorMessage);
@@ -17,12 +17,12 @@ export const Main = () => {
     return <Loading />;
   }
 
-  if (error) {
-    return <ErrorModal error={error} />;
-  }
-
   if (!offers) {
     return <MainEmpty city={selectedCity} />;
+  }
+
+  if (error) {
+    return <ErrorModal error={error} />;
   }
 
   return (
