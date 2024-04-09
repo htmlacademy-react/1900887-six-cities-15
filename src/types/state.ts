@@ -3,6 +3,7 @@ import { store } from '../store';
 import { City, Offer } from './offers';
 import { Nullable } from 'vitest';
 import { AuthorizationStatus } from '../const';
+import { ReviewsInfo } from './reviews';
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -24,7 +25,16 @@ export type InitialState = {
   isLoading: boolean;
   error: null | string;
   currentUser: Nullable<TAuthInfo>;
+  comments: Nullable<ReviewsInfo>;
+  nearPlaces: Nullable<Offer[]>;
 };
+
+export type AppData = {
+  offers: Nullable<Offer[]>;
+  comments: Nullable<ReviewsInfo>;
+  nearPlaces: Nullable<Offer[]>;
+  isLoading: boolean;
+}
 
 export type TAsyncThunk = {dispatch: AppDispatch; state: State; extra: AxiosInstance};
 

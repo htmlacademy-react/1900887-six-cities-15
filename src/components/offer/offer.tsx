@@ -8,16 +8,27 @@ import { OfferFeatures } from './offer-features';
 import { OfferPrice } from './offer-price';
 import { OfferInside } from './offer-inside';
 import { OfferHost } from './offer-host';
-import { OfferReviews } from './offer-reviews';
-import { OfferMap } from './offer-map';
+import { OfferReviews } from '../reviews';
 import { OfferNearPlaces } from './offer-near-places';
+import { ReviewsInfo } from '../../types/reviews';
+import { Nullable } from 'vitest';
+import { Map } from '../map';
+import { useAppSelector } from '../../app/hooks';
+import { getNearPlaces } from '../../store/selectors';
 
 type TOffer = {
   offer: IOffer;
+  comments: Nullable<ReviewsInfo>;
 }
 
-const Offer = ({ offer }: TOffer) => {
-  const { title, type, price, isPremium, isFavorite, rating, goods, bedrooms, maxAdults, host: { name, avatarUrl, isPro }, description, images } = offer;
+const Offer = ({ offer, comments }: TOffer) => {
+  const nearPlaces = useAppSelector(getNearPlaces)?.concat(offer);
+
+  const { title, type, price, isPremium, isFavorite, rating, goods, bedrooms, maxAdults, city, host: { name, avatarUrl, isPro }, description, images } = offer;
+
+  if (!nearPlaces) {
+    return '';
+  }
 
   return (
     <Fragment>
@@ -32,12 +43,12 @@ const Offer = ({ offer }: TOffer) => {
             <OfferPrice price={price} />
             <OfferInside goods={goods} />
             <OfferHost name={name} avatarUrl={avatarUrl} isPro={isPro} description={description} />
-            <OfferReviews />
+            <OfferReviews comments={comments} />
           </div>
         </div>
-        <OfferMap />
+        <Map city={city} offers={nearPlaces} selectedOffer={offer} className={'offer__map'} />
       </section>
-      <OfferNearPlaces />
+      <OfferNearPlaces offers={nearPlaces} />
     </Fragment>
   );
 };

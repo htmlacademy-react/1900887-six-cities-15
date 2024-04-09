@@ -36,3 +36,13 @@ export const getCurrentUser = createSelector(
   (state: State) => state.currentUser,
   (user) => user
 );
+
+export const getCurrentComments = createSelector(
+  (state: State) => state.comments,
+  (comments) => comments
+);
+
+export const getNearPlaces = createSelector(
+  (state: State) => state.nearPlaces,
+  (places) => places?.slice(0, 3)
+);

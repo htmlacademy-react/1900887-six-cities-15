@@ -116,3 +116,14 @@ export const ERROR_TIMEOUT = 2000;
 export enum ERROR_MESSAGES {
   UNAUTHORIZED = 'You are not authorized'
 }
+
+export enum SORTING {
+  POPULAR = 'popular',
+  LOW_TO_HIGH = 'low-to-high',
+  HIGH_TO_LOW = 'high-to-low',
+  TOP_RATED_FIRST = 'top-rated-first'
+}
+
+export enum NameSpace {
+  AppData = 'APP_DATA'
+}
