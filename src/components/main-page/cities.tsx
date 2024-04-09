@@ -7,7 +7,7 @@ import { sortOffers } from '../sorting/source';
 
 export const Cities: FC<TCities> = ({ selectedCity, offers }) => {
   const [selectedOffer, setSelectedOffer] = useState<OfferInfo | null>(null);
-  const [sortType, setSortType] = useState(SORTING.POPULAR);
+  const [sortType, setSortType] = useState<string>(SORTING.POPULAR);
 
   const sortedOffers: Offer[] = sortOffers({ sortType, offers });
   const handleMouseEvent = useCallback((offer: Offer | null) => setSelectedOffer(offer), []);

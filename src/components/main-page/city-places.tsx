@@ -3,10 +3,9 @@ import { TCityPlaces } from '../../types/offers';
 import { PlacesSorting } from '../sorting/places-sorting-list';
 import { CityPlacesList } from './city-places-list';
 import { isSingular } from '../../utils';
-import { Nullable } from 'vitest';
 
 export type TSortEvent = {
-  onClickEvent: Dispatch<SetStateAction<Nullable<string>>>;
+  onClickEvent: Dispatch<SetStateAction<string>>;
 }
 
 const CityPlaces: FC<TCityPlaces & TSortEvent> = ({ city, offers, onMouseEvent, onClickEvent }) => {

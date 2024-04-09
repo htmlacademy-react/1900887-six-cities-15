@@ -1,2 +1,2 @@
 export {mockState} from './state';
-export {mockOffers, mockSelectedOffer} from './mocks';
+export {mockOffers} from './mocks';
