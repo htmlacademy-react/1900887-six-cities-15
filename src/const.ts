@@ -117,7 +117,8 @@ export enum SORTING {
   POPULAR = 'popular',
   LOW_TO_HIGH = 'low-to-high',
   HIGH_TO_LOW = 'high-to-low',
-  TOP_RATED_FIRST = 'top-rated-first'
+  TOP_RATED_FIRST = 'top-rated-first',
+  DEFAULT = 'null'
 }
 
 export enum NameSpace {
