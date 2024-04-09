@@ -1,8 +1,11 @@
-import { DEFAULT_CITY, NameSpace } from '../const';
-import { mockOffers } from './mocks';
+import { AuthorizationStatus, DEFAULT_CITY, NameSpace } from '../const';
+import { mockComments, mockUser } from './mocks';
 
 export const mockState = {
-  [NameSpace.OFFERS]: mockOffers,
   [NameSpace.CITY]: DEFAULT_CITY,
-  [NameSpace.SELECTED_OFFER]: mockOffers[0]
+  [NameSpace.LOADING]: true,
+  [NameSpace.AUTH]: AuthorizationStatus.AUTH,
+  [NameSpace.ERROR]: 'access deny',
+  [NameSpace.USER]: mockUser,
+  [NameSpace.COMMENTS]: mockComments,
 };
