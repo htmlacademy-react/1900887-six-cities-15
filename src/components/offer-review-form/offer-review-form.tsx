@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
-import { checkSize } from './source';
+import { checkSize, initialState } from './source';
 import { useAppDispatch } from '../../app/hooks';
 import { uploadComment } from '../../api/api-actions';
 import { ratings } from '../form-rating/source';
@@ -12,14 +12,15 @@ type TOfferReviewForm = {
 export const OfferReviewForm: FC<TOfferReviewForm> = ({ id }) => {
   const dispatch = useAppDispatch();
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [formData, setFormData] = useState({
-    rating: 0,
-    review: ''
-  });
+  const [formData, setFormData] = useState<initialState>({ rating: 0, review: '' });
 
-  const handleRatingChange = (evt: ChangeEvent) => {
-    const { name, value } = evt.target as HTMLInputElement;
-    setFormData({ ...formData, [name]: value });
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, rating: Number(evt.target.value) });
+    checkSize({ rating: formData.rating, message: formData.review, action: setIsDisabled });
+  };
+
+  const handleTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({ ...formData, review: evt.target.value });
     checkSize({ rating: formData.rating, message: formData.review, action: setIsDisabled });
   };
 
@@ -41,11 +42,18 @@ export const OfferReviewForm: FC<TOfferReviewForm> = ({ id }) => {
     <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {ratings.map((rating) => <FormRating count={rating.count} onChange={handleRatingChange} key={rating.count} />)}
+        {ratings.map((rating) => (
+          <FormRating
+            count={rating.count}
+            onChange={handleRatingChange}
+            key={rating.count}
+            checked={formData.rating === rating.count}
+            defaultValue={rating.count}
+          />))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={handleRatingChange}
+        onChange={handleTextChange} value={formData.review}
       >
       </textarea>
       <div className="reviews__button-wrapper">

@@ -9,6 +9,11 @@ type TCheckSize = {
   action: Dispatch<SetStateAction<boolean>>;
 }
 
+export type initialState = {
+  rating: number;
+  review: string;
+}
+
 export const checkSize = ({rating, message, action}: TCheckSize) => {
   if (message.length > MIN_SIZE && message.length < MAX_SIZE && rating > 0) {
     action(false);
