@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { getComments, getNearPlacesAction, getOffer, loadOffers, requireAuthorization, saveCurrentUser, selectCity, setError, setIsLoading } from './action';
+import { addComment, addToFavoritesAction, dropCurrentUser, getComments, getNearPlacesAction, getOffer, loadOffers, requireAuthorization, saveCurrentUser, selectCity, setError, setIsLoading } from './action';
 import { AuthorizationStatus, DEFAULT_CITY } from '../const';
 import { InitialState } from '../types/state';
 
@@ -13,7 +13,8 @@ const initialState: InitialState = {
   error: null,
   currentUser: null,
   comments: null,
-  nearPlaces: null
+  nearPlaces: null,
+  favorites: null
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -39,8 +40,17 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(saveCurrentUser, (state, action) => {
       state.currentUser = action.payload;
     })
+    .addCase(dropCurrentUser, (state) => {
+      state.currentUser = null;
+    })
     .addCase(getComments, (state, action) => {
       state.comments = action.payload;
+    })
+    .addCase(addComment, (state, action) => {
+      state.comments?.push(action.payload);
+    })
+    .addCase(addToFavoritesAction, (state, action) => {
+      state.favorites?.push(action.payload);
     })
     .addCase(getNearPlacesAction, (state, action) => {
       state.nearPlaces = action.payload;

@@ -1,12 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk, TAuthInfo} from '../types/state';
 import { Offer } from '../types/offers';
-import { getComments, getNearPlacesAction, getOffer, loadOffers, requireAuthorization, saveCurrentUser, setError, setIsLoading } from '../store/action';
-import { APIRoutes, AuthorizationStatus, ERROR_TIMEOUT } from '../const';
+import { addComment, addToFavoritesAction, dropCurrentUser, getComments, getNearPlacesAction, getOffer, loadOffers, requireAuthorization, saveCurrentUser, setIsLoading } from '../store/action';
+import { APIRoutes, AuthorizationStatus } from '../const';
 import { AuthData, UserData } from '../types/user-data';
-import { store } from '../store';
 import { dropUser, saveUser, dropToken, saveToken } from '../services';
-import { ReviewsInfo } from '../types/reviews';
+import { ReviewsInfo, ReviewData, Review } from '../types/reviews';
+import { redirect } from 'react-router-dom';
+import { AppRoutes } from '../app/routes';
+
+type FavoritesData = {
+  id: string;
+  status: number;
+}
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, TAsyncThunk>('data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
@@ -43,6 +49,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, TAsyncThunk>('u
     try {
       const {data} = await api.get<TAuthInfo>(APIRoutes.Login);
       dispatch(saveCurrentUser(data));
+      saveUser(data.email);
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     } catch (err) {
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -54,8 +61,8 @@ export const loginAction = createAsyncThunk<void, AuthData, TAsyncThunk>('user/l
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoutes.Login, {email, password});
     saveToken(token);
-    saveUser(email);
-    dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    dispatch(checkAuthAction());
+    redirect(AppRoutes.Root);
   }
 );
 
@@ -64,15 +71,23 @@ export const logoutAction = createAsyncThunk<void, undefined, TAsyncThunk>('user
     await api.delete(APIRoutes.Logout);
     dropToken();
     dropUser();
-    dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    dispatch(dropCurrentUser());
+    dispatch(checkAuthAction());
   },
 );
 
-export const clearErrorAction = createAsyncThunk('app/clearError',
-  () => {
-    setTimeout(
-      () => store.dispatch(setError(null)),
-      ERROR_TIMEOUT
-    );
+export const fetchAddToFavorites = createAsyncThunk<void, FavoritesData, TAsyncThunk>('app/addToFavorites',
+  async ({id, status}, {dispatch, extra: api}) => {
+    dispatch(setIsLoading(true));
+    const {data} = await api.post<Offer>(`/favorite/${id}/${status}`);
+    dispatch(addToFavoritesAction(data));
+    dispatch(setIsLoading(false));
+  }
+);
+
+export const uploadComment = createAsyncThunk<void, ReviewData, TAsyncThunk>('app/uploadComment',
+  async ({offerId, review: {comment, rating}}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Review>(`/comments/${offerId}`, {comment, rating});
+    dispatch(addComment(data));
   }
 );

@@ -17,7 +17,7 @@ export const PlacesSorting: FC<TSortEvent> = ({ onClickEvent }) => {
         </svg>
       </span>
       <ul className={`places__options places__options--custom places__options${isOpened ? '--opened' : ''}`}>
-        {SORTING_LIST.map((sorting) => <SortElement sort={sorting} key={sorting.title} onClick={onClickEvent} />)}
+        {SORTING_LIST.map((sorting) => <SortElement sort={sorting} key={sorting.title} onClick={{ setSorting: onClickEvent, setSortingOpen: setIsOpened }} />)}
       </ul>
     </form >
   );

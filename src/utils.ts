@@ -6,8 +6,9 @@ const getIsLoginPage = (pathname: string): boolean => pathname === '/login';
 
 const getClassNameByLocation = (pathname: string) => {
   switch(pathname){
-    case '/login': return 'page--login';
-    case '/': return 'page--main';
+    case '/login': return 'page--gray page--login';
+    case '/': return 'page--gray page--main';
+    case '/favorites': return 'page--favorites';
     default: return '';
   }
 };
@@ -18,4 +19,17 @@ const getHumanizedDate = (date: string) => new Date(date).toLocaleString('defaul
 
 const getDateTimeDate = (date: string) => new Date(date).toLocaleDateString('en-ca');
 
-export {capitalize, isSingular, getIsLoginPage, getClassNameByLocation, roundNumber, getHumanizedDate, getDateTimeDate};
+const getClassName = (isFavorite: boolean, className: string) => isFavorite ?
+  `${className}__bookmark-button ${className}__bookmark-button--active button` :
+  `${className}__bookmark-button button`;
+
+export {
+  capitalize,
+  isSingular,
+  getIsLoginPage,
+  getClassNameByLocation,
+  roundNumber,
+  getHumanizedDate,
+  getDateTimeDate,
+  getClassName
+};

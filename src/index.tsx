@@ -5,12 +5,13 @@ import { Provider } from 'react-redux';
 import { store } from './store/index.ts';
 import { checkAuthAction, fetchOffersAction } from './api/api-actions.ts';
 
-store.dispatch(fetchOffersAction());
-store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(fetchOffersAction());
+store.dispatch(checkAuthAction());
 
 root.render(
   <React.StrictMode>

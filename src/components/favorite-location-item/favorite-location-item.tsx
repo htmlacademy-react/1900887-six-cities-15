@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { PlaceCardMark } from '../place-card-mark';
 import { FavoriteOffer } from '../../types/offers';
 import { FC } from 'react';
+import { Bookmark } from '../favorites-bookmark';
 
 export const FavoriteLocationItem: FC<FavoriteOffer> = ({ offer }) => {
 
-  const { id, isPremium, price, rating, title, previewImage } = offer;
+  const { id, isPremium, price, isFavorite, rating, title, previewImage } = offer;
 
   return (
     <li className="favorites__locations-items">
@@ -30,12 +31,7 @@ export const FavoriteLocationItem: FC<FavoriteOffer> = ({ offer }) => {
                 <b className="place-card__price-value">&euro;{price}</b>
                 <span className="place-card__price-text">&#47;&nbsp;night</span>
               </div>
-              <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                <svg className="place-card__bookmark-icon" width="18" height="19">
-                  <use xlinkHref="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">In bookmarks</span>
-              </button>
+              <Bookmark id={id} bookmarkClassName='place-card' isFavorite={isFavorite} height={19} width={18} />
             </div>
             <div className="place-card__rating rating">
               <div className="place-card__stars rating__stars">

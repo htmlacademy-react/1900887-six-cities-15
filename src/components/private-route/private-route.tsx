@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
-import { AuthorizationStatus } from '../../const';
 import { AppRoutes } from '../../app/routes/routes';
+import { getUser } from '../../services';
 
-type PrivateRouteProps = {
-  authStatus: AuthorizationStatus;
+
+export const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
+  const user = getUser();
+  return (
+    user ? children : <Navigate to={AppRoutes.Login} />
+  );
 };
-
-export const PrivateRoute: FC<PropsWithChildren<PrivateRouteProps>> = ({ children, authStatus }) => (
-  authStatus === AuthorizationStatus.AUTH ? children : <Navigate to={AppRoutes.Login} />
-);

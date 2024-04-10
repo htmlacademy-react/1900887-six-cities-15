@@ -3,11 +3,18 @@ import { TSortingElement } from '../sorting/source';
 
 type TSortElement = {
   sort: TSortingElement;
-  onClick: Dispatch<SetStateAction<string>>;
+  onClick: {
+    setSorting: Dispatch<SetStateAction<string>>;
+    setSortingOpen: Dispatch<SetStateAction<boolean>>;
+  };
 }
 
 export const SortElement: FC<TSortElement> = ({ sort, onClick }) => {
-  const handleClick = (e: MouseEvent<HTMLLIElement>) => onClick(e.currentTarget.dataset.value || '');
+  const { setSorting, setSortingOpen } = onClick;
+  const handleClick = (e: MouseEvent<HTMLLIElement>) => {
+    setSorting(e.currentTarget.dataset.value || '');
+    setSortingOpen(false);
+  };
 
   return (<li className='places__option' data-value={sort.value} onClick={handleClick} >{sort.title}</li >);
 };

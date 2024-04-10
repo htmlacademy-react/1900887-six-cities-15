@@ -7,6 +7,7 @@ import { Navigation } from '../navigation';
 export const Header = () => {
   const authStatus = useAppSelector(getAuthorizationStatus);
   const isLoginPage = getIsLoginPage(location.pathname);
+
   return (
     <header className="header">
       <div className="container">

@@ -76,7 +76,7 @@ export type OfferPriceProps = {price: number};
 
 export type OfferRatingProps = {rating: number};
 
-export type OfferTitleProps = {title: string; isFavorite: boolean};
+export type OfferTitleProps = {id: string; title: string; isFavorite: boolean};
 
 export type TCityPlaces = TLocationItem & Offers & OfferEvent;
 
@@ -84,7 +84,7 @@ export type TCityPlacesList = Offers & OfferEvent;
 
 export type FavoriteOffers = {offers: Nullable<Offer[]>};
 
-export type FavoriteOffer = {offer: OfferInfo};
+export type FavoriteOffer = {offer: Offer};
 
 export type TLocationItem = {city: City};
 
