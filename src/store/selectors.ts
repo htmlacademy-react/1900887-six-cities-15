@@ -40,7 +40,7 @@ export const getCurrentUser = createSelector(
 
 export const getCurrentComments = createSelector(
   (state: Pick<State, NameSpace.COMMENTS>) => state.comments,
-  (comments) => comments?.slice(-10)
+  (comments) => comments?.slice(-10).reverse()
 );
 
 export const getNearPlaces = createSelector(
