@@ -1,12 +1,21 @@
-import { FormEventHandler, useRef } from 'react';
+import { FormEventHandler, useEffect, useRef } from 'react';
 import { loginAction } from '../../api/api-actions';
 import { useAppDispatch } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes/routes';
+import { getUser } from '../../services';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const user = getUser();
+
+  useEffect(() => {
+    if (user) {
+      navigate(AppRoutes.Root);
+    }
+  }, [user, navigate]);
+
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);

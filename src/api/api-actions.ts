@@ -81,6 +81,7 @@ export const fetchAddToFavorites = createAsyncThunk<void, FavoritesData, TAsyncT
     dispatch(setIsLoading(true));
     const {data} = await api.post<Offer>(`/favorite/${id}/${status}`);
     dispatch(addToFavoritesAction(data));
+    dispatch(fetchOffersAction());
     dispatch(setIsLoading(false));
   }
 );

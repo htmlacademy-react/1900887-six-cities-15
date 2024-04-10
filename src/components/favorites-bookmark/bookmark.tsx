@@ -1,12 +1,10 @@
-import { memo, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { memo } from 'react';
+import { useAppDispatch } from '../../app/hooks';
 import { getClassName } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../../services';
 import { AppRoutes } from '../../app/routes';
 import { fetchAddToFavorites } from '../../api/api-actions';
-import { getLoadingState } from '../../store/selectors';
-import { setIsLoading } from '../../store/action';
 
 type TBookmark = {
   id: string;
@@ -19,21 +17,7 @@ type TBookmark = {
 const Bookmark = ({ id, isFavorite, bookmarkClassName, width, height }: TBookmark) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isLoading = useAppSelector(getLoadingState);
   const user = getUser();
-
-  useEffect(() => {
-    let mounted = true;
-    if (!isLoading && mounted) {
-      setIsLoading(true);
-    }
-
-    return (
-      () => {
-        mounted = false;
-      }
-    );
-  }, [isFavorite, isLoading]);
 
   const handleClick = () => {
     if (!user) {
