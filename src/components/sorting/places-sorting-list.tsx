@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { SORTING_LIST } from './source';
-import { SortElement } from './sort-element';
-import { TSortEvent } from '../main-page/city-places';
+import { SortElement } from '../sort-element/sort-element';
+import { TSortEvent } from '../city-places/city-places';
 
 export const PlacesSorting: FC<TSortEvent> = ({ onClickEvent }) => {
   const [isOpened, setIsOpened] = useState(false);

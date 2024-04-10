@@ -2,7 +2,7 @@ import { useAppSelector } from '../../app/hooks';
 import { AuthorizationStatus } from '../../const';
 import { getCurrentUser } from '../../store/selectors';
 import { UserInfo } from '../user-info';
-import { SignButton } from './index';
+import { SignButton } from '../sign-button';
 
 type TNavigation = {
   authStatus: AuthorizationStatus;

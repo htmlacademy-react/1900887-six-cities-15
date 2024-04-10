@@ -1,4 +1,4 @@
-enum AppRoutes {
+export enum AppRoutes {
   Root = '/',
   Offer = '/offer',
   Login = '/login',
@@ -6,5 +6,3 @@ enum AppRoutes {
   Favourites = '/favorites',
   Everything = '/*',
 }
-
-export { AppRoutes };

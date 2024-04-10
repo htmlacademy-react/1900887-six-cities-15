@@ -1,3 +1,4 @@
+import { Nullable } from 'vitest';
 import { Review } from './reviews';
 
 export type City = {
@@ -81,7 +82,7 @@ export type TCityPlaces = TLocationItem & Offers & OfferEvent;
 
 export type TCityPlacesList = Offers & OfferEvent;
 
-export type FavoriteOffers = {offers: OfferInfo[]};
+export type FavoriteOffers = {offers: Nullable<Offer[]>};
 
 export type FavoriteOffer = {offer: OfferInfo};
 

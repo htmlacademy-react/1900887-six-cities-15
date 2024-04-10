@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { OfferTitleProps } from '../../types/offers';
-import { Bookmark } from '../favorites/bookmark';
+import { Bookmark } from '../favorites-bookmark';
 
 export const OfferTitle: FC<OfferTitleProps> = ({ title, isFavorite }) => (
   <div className="offer__name-wrapper">

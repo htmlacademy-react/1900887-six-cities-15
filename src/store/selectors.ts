@@ -47,3 +47,8 @@ export const getNearPlaces = createSelector(
   (state: State) => state.nearPlaces,
   (places) => places?.slice(0, 3)
 );
+
+export const getFavoriteOffers = createSelector(
+  (state: State) => state.offers,
+  (offers) => offers?.filter((offer) => offer.isFavorite)
+);
