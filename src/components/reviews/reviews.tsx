@@ -1,7 +1,7 @@
 import { Nullable } from 'vitest';
 import { ReviewsInfo } from '../../types/reviews';
-import { OfferReviewForm } from './offer-review-form';
-import { ReviewsList } from './reviews-list';
+import { OfferReviewForm } from '../offer-review-form';
+import { ReviewsList } from '../reviews-list';
 
 type TOfferReviews = {
   comments: Nullable<ReviewsInfo>;
