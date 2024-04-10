@@ -1,6 +1,6 @@
 import { Nullable } from 'vitest';
 import { ReviewsInfo } from '../../types/reviews';
-import { ReviewComponent } from './review';
+import { ReviewComponent } from '../review';
 
 type TReviewsList = {
   reviews: Nullable<ReviewsInfo>;
