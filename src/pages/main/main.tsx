@@ -1,8 +1,8 @@
 import { Offer } from '../../types/offers';
-import { CitiesTabs } from '../../components/main-page';
+import { CitiesTabs } from '../../components/cities-tabs';
 import { useAppSelector } from '../../app/hooks';
 import { MainEmpty } from '../main-empty';
-import { Cities } from '../../components/main-page/cities';
+import { Cities } from '../../components/cities';
 import { Nullable } from 'vitest';
 import { getCity, getErrorMessage, getOffersByCity } from '../../store/selectors';
 import { Loading } from '../../components/spinner/spinner';

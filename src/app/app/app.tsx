@@ -5,10 +5,10 @@ import { Favorites } from '../../pages/favorites/index';
 import { Login } from '../../pages/login';
 import { PrivateRoute } from '../../components/private-route';
 import { Main } from '../../pages/main';
-import { AppRoutes } from '../routes/routes.ts';
+import { AppRoutes } from '../routes';
 import { OfferComponent } from '../../pages/offer';
-import { useAppSelector } from '../hooks/index.ts';
-import { getAuthorizationStatus } from '../../store/selectors.ts';
+import { useAppSelector } from '../hooks';
+import { getAuthorizationStatus } from '../../store/selectors';
 
 export const App = () => {
   const authStatus = useAppSelector(getAuthorizationStatus);

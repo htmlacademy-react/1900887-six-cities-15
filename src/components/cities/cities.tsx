@@ -1,5 +1,5 @@
 import { FC, useCallback, useState } from 'react';
-import { CityPlaces } from './city-places';
+import { CityPlaces } from '../city-places';
 import { Offer, OfferInfo, TCities } from '../../types/offers';
 import { Map } from '../map';
 import { SORTING } from '../../const';

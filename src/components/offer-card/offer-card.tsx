@@ -3,7 +3,7 @@ import { Offer } from '../../types/offers';
 import { AppRoutes } from '../../app/routes/routes';
 import { Link } from 'react-router-dom';
 import { PlaceCardMark } from '../place-card-mark';
-import { Bookmark } from '../favorites/bookmark';
+import { Bookmark } from '../favorites-bookmark';
 import { capitalize } from '../../utils';
 
 type TOfferCard = {

@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { TCityPlaces } from '../../types/offers';
 import { PlacesSorting } from '../sorting/places-sorting-list';
-import { CityPlacesList } from './city-places-list';
+import { CityPlacesList } from '../city-places-list';
 import { isSingular } from '../../utils';
 
 export type TSortEvent = {

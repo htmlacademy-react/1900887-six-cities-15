@@ -1,5 +1,5 @@
 import { Dispatch, FC, MouseEvent, SetStateAction } from 'react';
-import { TSortingElement } from './source';
+import { TSortingElement } from '../sorting/source';
 
 type TSortElement = {
   sort: TSortingElement;
