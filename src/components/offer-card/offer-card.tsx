@@ -1,14 +1,19 @@
 import { FC, memo } from 'react';
-import { TOffer } from '../../types/offers';
+import { Offer } from '../../types/offers';
 import { AppRoutes } from '../../app/routes/routes';
 import { Link } from 'react-router-dom';
 import { PlaceCardMark } from '../place-card-mark';
 import { Bookmark } from '../favorites/bookmark';
 import { capitalize } from '../../utils';
 
-const OfferCard: FC<TOffer> = ({ offer, onMouseEvent }) => {
-  const handleOfferHover = () => onMouseEvent(offer);
-  const handleMouseOff = () => onMouseEvent(null);
+type TOfferCard = {
+  offer: Offer;
+  onMouseEvent?: (offer: Offer | null) => void;
+};
+
+const OfferCard: FC<TOfferCard> = ({ offer, onMouseEvent }) => {
+  const handleOfferHover = () => onMouseEvent && onMouseEvent(offer);
+  const handleMouseOff = () => onMouseEvent && onMouseEvent(null);
 
   const { id, title, type, price, isPremium, rating, previewImage, isFavorite } = offer;
 

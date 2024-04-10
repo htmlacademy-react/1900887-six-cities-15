@@ -113,6 +113,21 @@ export const BASE_URL = 'https://15.design.htmlacademy.pro/six-cities';
 export const SERVER_TIMEOUT = 5000;
 export const ERROR_TIMEOUT = 2000;
 
-export enum ERROR_MESSAGES {
-  UNAUTHORIZED = 'You are not authorized'
+export enum SORTING {
+  POPULAR = 'popular',
+  LOW_TO_HIGH = 'low-to-high',
+  HIGH_TO_LOW = 'high-to-low',
+  TOP_RATED_FIRST = 'top-rated-first',
+  DEFAULT = 'null'
+}
+
+export enum NameSpace {
+  AppData = 'APP_DATA',
+  CITY = 'city',
+  LOADING = 'isLoading',
+  AUTH = 'authorizationStatus',
+  ERROR = 'error',
+  USER = 'currentUser',
+  COMMENTS = 'comments',
+  NEAR_PLACES = 'nearPlaces'
 }

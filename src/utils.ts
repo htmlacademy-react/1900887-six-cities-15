@@ -14,4 +14,8 @@ const getClassNameByLocation = (pathname: string) => {
 
 const roundNumber = (num: number) => parseFloat(num.toFixed(5));
 
-export {capitalize, isSingular, getIsLoginPage, getClassNameByLocation, roundNumber};
+const getHumanizedDate = (date: string) => new Date(date).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+const getDateTimeDate = (date: string) => new Date(date).toLocaleDateString('en-ca');
+
+export {capitalize, isSingular, getIsLoginPage, getClassNameByLocation, roundNumber, getHumanizedDate, getDateTimeDate};

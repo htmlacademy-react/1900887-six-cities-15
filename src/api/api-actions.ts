@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk, TAuthInfo} from '../types/state';
 import { Offer } from '../types/offers';
-import { getOffer, loadOffers, requireAuthorization, saveCurrentUser, setError, setIsLoading } from '../store/action';
+import { getComments, getNearPlacesAction, getOffer, loadOffers, requireAuthorization, saveCurrentUser, setError, setIsLoading } from '../store/action';
 import { APIRoutes, AuthorizationStatus, ERROR_TIMEOUT } from '../const';
 import { AuthData, UserData } from '../types/user-data';
 import { store } from '../store';
 import { dropUser, saveUser, dropToken, saveToken } from '../services';
+import { ReviewsInfo } from '../types/reviews';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, TAsyncThunk>('data/fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
@@ -20,6 +21,20 @@ export const fetchOfferAction = createAsyncThunk<void, string | undefined, TAsyn
     const {data} = await api.get<Offer>(`/offers/${offerId}`);
     dispatch(getOffer(data));
     dispatch(setIsLoading(false));
+  }
+);
+
+export const fetchNearPlaces = createAsyncThunk<void, string | undefined, TAsyncThunk>('data/fetchNearPlaces',
+  async (offerId: string | undefined, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offer[]>(`/offers/${offerId}/nearby`);
+    dispatch(getNearPlacesAction(data));
+  }
+);
+
+export const fetchReviewsAction = createAsyncThunk<void, string | undefined, TAsyncThunk>('data/fetchReviews',
+  async (offerId: string | undefined, {dispatch, extra: api}) => {
+    const {data} = await api.get<ReviewsInfo>(`/comments/${offerId}`);
+    dispatch(getComments(data));
   }
 );
 

@@ -25,6 +25,7 @@ export const Main = () => {
     return <ErrorModal error={error} />;
   }
 
+
   return (
     <main className="page__main page__main--index">
       <CitiesTabs />

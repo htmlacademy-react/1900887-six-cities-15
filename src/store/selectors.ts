@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../types/state';
+import { NameSpace } from '../const';
 
 export const getOffersByCity = createSelector(
   (state: State) => state.offers,
@@ -8,7 +9,7 @@ export const getOffersByCity = createSelector(
 );
 
 export const getCity = createSelector(
-  (state: State) => state.city,
+  (state: Pick<State, NameSpace.CITY>) => state.city,
   (selectedCity) => selectedCity
 );
 
@@ -18,21 +19,31 @@ export const getSelectedOffer = createSelector(
 );
 
 export const getLoadingState = createSelector(
-  (state: State) => state.isLoading,
+  (state: Pick<State, NameSpace.LOADING>) => state.isLoading,
   (isLoading) => isLoading
 );
 
 export const getAuthorizationStatus = createSelector(
-  (state: State) => state.authorizationStatus,
+  (state: Pick<State, NameSpace.AUTH>) => state.authorizationStatus,
   (authorizationStatus) => authorizationStatus
 );
 
 export const getErrorMessage = createSelector(
-  (state: State) => state.error,
+  (state: Pick<State, NameSpace.ERROR>) => state.error,
   (error) => error
 );
 
 export const getCurrentUser = createSelector(
-  (state: State) => state.currentUser,
+  (state: Pick<State, NameSpace.USER>) => state.currentUser,
   (user) => user
+);
+
+export const getCurrentComments = createSelector(
+  (state: Pick<State, NameSpace.COMMENTS>) => state.comments,
+  (comments) => comments
+);
+
+export const getNearPlaces = createSelector(
+  (state: State) => state.nearPlaces,
+  (places) => places?.slice(0, 3)
 );

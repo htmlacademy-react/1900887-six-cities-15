@@ -2,23 +2,28 @@ import { NotFound } from '../../components/404';
 import { Offer } from '../../components/offer';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useParams } from 'react-router-dom';
-import { fetchOfferAction } from '../../api/api-actions';
+import { fetchNearPlaces, fetchOfferAction, fetchReviewsAction } from '../../api/api-actions';
 import { useEffect } from 'react';
-import { getOffer } from '../../store/action';
+import { getComments, getNearPlacesAction, getOffer } from '../../store/action';
 import { Loading } from '../../components/spinner/spinner';
-import { getLoadingState, getSelectedOffer } from '../../store/selectors';
+import { getCurrentComments, getLoadingState, getSelectedOffer } from '../../store/selectors';
 
 
 export const OfferComponent = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const offer = useAppSelector(getSelectedOffer);
+  const comments = useAppSelector(getCurrentComments);
   const isLoading = useAppSelector(getLoadingState);
 
   useEffect(() => {
     dispatch(fetchOfferAction(id));
+    dispatch(fetchReviewsAction(id));
+    dispatch(fetchNearPlaces(id));
     return () => {
       dispatch(getOffer(null));
+      dispatch(getComments(null));
+      dispatch(getNearPlacesAction(null));
     };
   }, [id, dispatch]);
 
@@ -32,7 +37,7 @@ export const OfferComponent = () => {
 
   return (
     <main className="page__main page__main--offer">
-      <Offer offer={offer} />
+      <Offer offer={offer} comments={comments} />
     </main>
   );
 };

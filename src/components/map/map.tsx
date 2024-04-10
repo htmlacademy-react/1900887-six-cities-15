@@ -6,7 +6,7 @@ import { MapProps } from '../../types/map';
 import { currentCustomIcon, defaultCustomIcon } from '../../const';
 import { roundNumber } from '../../utils';
 
-export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
+export const Map: FC<MapProps> = ({ city, offers, selectedOffer, className }) => {
   const mapRef = useRef(null);
   const map = useMap({ mapRef, city });
 
@@ -43,7 +43,7 @@ export const Map: FC<MapProps> = ({ city, offers, selectedOffer }) => {
 
   return (
     <div className="cities__right-section">
-      <section className="cities__map map" ref={mapRef}></section>
+      <section className={`${className} map`} ref={mapRef}></section>
     </div>
   );
 };

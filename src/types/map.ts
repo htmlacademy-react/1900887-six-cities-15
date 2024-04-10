@@ -10,6 +10,7 @@ export type MapProps = {
   city: City;
   offers: Offer[];
   selectedOffer: OfferInfo | null;
+  className: string;
 };
 
 export type TMainEmpty = {

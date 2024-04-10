@@ -10,4 +10,4 @@ export type Review = {
   rating: number;
 }
 
-export type ReviewsInfo = {reviews: Review[]};
+export type ReviewsInfo = Review[];

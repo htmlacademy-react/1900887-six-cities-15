@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { Review } from './reviews';
 
 export type City = {
@@ -46,8 +45,8 @@ type OfferOptional = {
   maxAdults: number;
 }
 
-type OfferEvent = {
-  onMouseEvent: Dispatch<SetStateAction<OfferInfo | null>>;
+export type OfferEvent = {
+  onMouseEvent: (offer: Offer | null) => void;
 }
 
 export type AppProps = {offers: Offer[]; reviews: Review[]}
