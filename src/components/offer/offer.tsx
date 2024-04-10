@@ -24,7 +24,7 @@ type TOffer = {
 const Offer = ({ offer, comments }: TOffer) => {
   const nearPlaces = useAppSelector(getNearPlaces)?.concat(offer);
 
-  const { title, type, price, isPremium, isFavorite, rating, goods, bedrooms, maxAdults, city, host: { name, avatarUrl, isPro }, description, images } = offer;
+  const { id, title, type, price, isPremium, isFavorite, rating, goods, bedrooms, maxAdults, city, host: { name, avatarUrl, isPro }, description, images } = offer;
 
   if (!nearPlaces) {
     return '';
@@ -37,13 +37,13 @@ const Offer = ({ offer, comments }: TOffer) => {
         <div className="offer__container container">
           <div className="offer__wrapper">
             {isPremium && <OfferMark />}
-            <OfferTitle title={title} isFavorite={isFavorite} />
+            <OfferTitle id={id} title={title} isFavorite={isFavorite} />
             <OfferRating rating={rating} />
             <OfferFeatures bedrooms={bedrooms} type={type} maxAdults={maxAdults} />
             <OfferPrice price={price} />
             <OfferInside goods={goods} />
             <OfferHost name={name} avatarUrl={avatarUrl} isPro={isPro} description={description} />
-            <OfferReviews comments={comments} />
+            <OfferReviews id={id} comments={comments} />
           </div>
         </div>
         <Map city={city} offers={nearPlaces} selectedOffer={offer} className={'offer__map'} />

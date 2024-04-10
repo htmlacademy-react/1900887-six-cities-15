@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../types/state';
-import { NameSpace } from '../const';
+import { AuthorizationStatus, NameSpace } from '../const';
 
 export const getOffersByCity = createSelector(
   (state: State) => state.offers,
@@ -40,7 +40,7 @@ export const getCurrentUser = createSelector(
 
 export const getCurrentComments = createSelector(
   (state: Pick<State, NameSpace.COMMENTS>) => state.comments,
-  (comments) => comments
+  (comments) => comments?.slice(-10)
 );
 
 export const getNearPlaces = createSelector(
@@ -51,4 +51,9 @@ export const getNearPlaces = createSelector(
 export const getFavoriteOffers = createSelector(
   (state: State) => state.offers,
   (offers) => offers?.filter((offer) => offer.isFavorite)
+);
+
+export const getIsAuth = createSelector(
+  (state: State) => state.authorizationStatus,
+  (status) => status === AuthorizationStatus.AUTH
 );

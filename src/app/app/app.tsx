@@ -7,27 +7,22 @@ import { PrivateRoute } from '../../components/private-route';
 import { Main } from '../../pages/main';
 import { AppRoutes } from '../routes';
 import { OfferComponent } from '../../pages/offer';
-import { useAppSelector } from '../hooks';
-import { getAuthorizationStatus } from '../../store/selectors';
 
-export const App = () => {
-  const authStatus = useAppSelector(getAuthorizationStatus);
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoutes.Root} element={<Layout />}>
-          <Route index element={<Main />} />
-          <Route path={AppRoutes.Login} element={<Login />} />
-          <Route path={AppRoutes.Favourites} element={
-            <PrivateRoute authStatus={authStatus}>
-              <Favorites />
-            </PrivateRoute>
-          }
-          />
-          <Route path={`${AppRoutes.Offer}/:id`} element={<OfferComponent />} />
-        </Route>
-        <Route path={AppRoutes.Everything} element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+export const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path={AppRoutes.Root} element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path={AppRoutes.Login} element={<Login />} />
+        <Route path={AppRoutes.Favorites} element={
+          <PrivateRoute>
+            <Favorites />
+          </PrivateRoute>
+        }
+        />
+        <Route path={`${AppRoutes.Offer}/:id`} element={<OfferComponent />} />
+      </Route>
+      <Route path={AppRoutes.Everything} element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
+);

@@ -1,11 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import { logoutAction } from '../../api/api-actions';
 import { useAppDispatch } from '../../app/hooks';
 import { AppRoutes } from '../../app/routes/routes';
-import { AuthorizationStatus } from '../../const';
 
 type TSignButton = {
-  authStatus: AuthorizationStatus;
+  authStatus: boolean;
 }
 
 const LoginButton = () => (
@@ -17,11 +15,9 @@ const LoginButton = () => (
 
 const LogoutButton = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const handleClick = () => {
     dispatch(logoutAction());
-    navigate(AppRoutes.Root);
   };
 
   return (
@@ -31,4 +27,4 @@ const LogoutButton = () => {
   );
 };
 
-export const SignButton = ({ authStatus }: TSignButton) => (authStatus === AuthorizationStatus.AUTH ? <LogoutButton /> : <LoginButton />);
+export const SignButton = ({ authStatus }: TSignButton) => (authStatus ? <LogoutButton /> : <LoginButton />);

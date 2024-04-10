@@ -5,8 +5,9 @@ import { getClassNameByLocation } from '../../utils.ts';
 export const Layout = () => {
   const location = useLocation();
   const className = getClassNameByLocation(location.pathname);
+
   return (
-    <div className={`page page--gray ${className}`}>
+    <div className={`page ${className}`}>
       <Header />
       <Outlet />
     </div>

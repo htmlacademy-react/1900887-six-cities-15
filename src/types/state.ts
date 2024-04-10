@@ -27,6 +27,7 @@ export type InitialState = {
   currentUser: Nullable<TAuthInfo>;
   comments: Nullable<ReviewsInfo>;
   nearPlaces: Nullable<Offer[]>;
+  favorites: Nullable<Offer[]>;
 };
 
 export type AppData = {

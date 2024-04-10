@@ -3,6 +3,6 @@ export enum AppRoutes {
   Offer = '/offer',
   Login = '/login',
   Logout = '/logout',
-  Favourites = '/favorites',
+  Favorites = '/favorites',
   Everything = '/*',
 }

@@ -80,7 +80,8 @@ export enum ERRORS {
 export enum APIRoutes {
   Offers = '/offers',
   Login = '/login',
-  Logout = '/logout'
+  Logout = '/logout',
+  Favorite = '/favorite'
 }
 
 export const URL_MARKER_DEFAULT =
