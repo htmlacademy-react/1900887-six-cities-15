@@ -1,5 +1,5 @@
 import { Fragment, memo } from 'react';
-import { Offer as IOffer } from '../../types/offers';
+import { Offer as IOffer } from '../../types/offers.ts';
 import { OfferGallery } from '../offer-gallery';
 import { OfferMark } from '../offer-mark';
 import { OfferTitle } from '../offer-title';
@@ -8,7 +8,7 @@ import { OfferFeatures } from '../offer-features';
 import { OfferPrice } from '../offer-price';
 import { OfferInside } from '../offer-inside';
 import { OfferHost } from '../offer-host';
-import { OfferReviews } from '../reviews';
+import { OfferReviews } from '../reviews-component';
 import { OfferNearPlaces } from '../offer-near-places';
 import { ReviewsInfo } from '../../types/reviews';
 import { Nullable } from 'vitest';
