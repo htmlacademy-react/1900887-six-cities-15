@@ -2,19 +2,15 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes';
 import { TAuthInfo } from '../../types/state';
 import { useAppSelector } from '../../app/hooks';
-import { getFavoriteOffers, getLoadingState } from '../../store/selectors';
-import { Loading } from '../spinner';
+import { getFavoriteOffers } from '../../store/selectors';
+
 type TUserInfo = {
   user: TAuthInfo;
 }
+
 export const UserInfo = ({ user }: TUserInfo) => {
   const { email, avatarUrl } = user;
   const favorites = useAppSelector(getFavoriteOffers);
-  const isLoading = useAppSelector(getLoadingState);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <li className="header__nav-item user">
