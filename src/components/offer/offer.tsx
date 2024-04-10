@@ -8,7 +8,7 @@ import { OfferFeatures } from '../offer-features';
 import { OfferPrice } from '../offer-price';
 import { OfferInside } from '../offer-inside';
 import { OfferHost } from '../offer-host';
-import { OfferReviews } from '../reviews';
+import { OfferReviews } from '../reviews/index';
 import { OfferNearPlaces } from '../offer-near-places';
 import { ReviewsInfo } from '../../types/reviews';
 import { Nullable } from 'vitest';
