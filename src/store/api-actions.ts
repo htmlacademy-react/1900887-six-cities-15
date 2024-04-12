@@ -2,14 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk, TAuthInfo} from '../types/state';
 import { Offer } from '../types/offers';
 import { addComment, addToFavoritesAction, dropCurrentUser, requireAuthorization, saveCurrentUser, setIsLoading } from './action';
-import { APIRoutes, AuthorizationStatus } from '../const';
+import { APIRoutes, AuthorizationStatus, SliceName } from '../const';
 import { AuthData } from '../types/user-data';
 import { dropUser, dropToken, saveToken } from '../services';
 import { ReviewsInfo, ReviewData, Review } from '../types/reviews';
 import { redirect } from 'react-router-dom';
 import { AppRoutes } from '../app/routes';
-import { appData } from './app-data/app-data';
-import { userProcess } from './user-process/user-process';
 
 type FavoritesData = {
   id: string;
@@ -18,7 +16,7 @@ type FavoritesData = {
 
 
 export const fetchOfferAction = createAsyncThunk<Offer, string | undefined, TAsyncThunk>(
-  `${appData.name}/fetchOffer`,
+  `${SliceName.AppData}/fetchOffer`,
   async (offerId: string | undefined, {extra: api}) => {
     const {data} = await api.get<Offer>(`/offers/${offerId}`);
     return data;
@@ -26,7 +24,7 @@ export const fetchOfferAction = createAsyncThunk<Offer, string | undefined, TAsy
 );
 
 export const fetchOffersAction = createAsyncThunk<Offer[], undefined, TAsyncThunk>(
-  `${appData.name}/fetchOffers`,
+  `${SliceName.AppData}/fetchOffers`,
   async (_arg, {extra: api}) => {
     const {data} = await api.get<Offer[]>('/offers');
     return data;
@@ -34,7 +32,7 @@ export const fetchOffersAction = createAsyncThunk<Offer[], undefined, TAsyncThun
 );
 
 export const fetchNearPlaces = createAsyncThunk<Offer[], string | undefined, TAsyncThunk>(
-  `${appData.name}/fetchNearPlaces`,
+  `${SliceName.AppData}/fetchNearPlaces`,
   async (offerId: string | undefined, {extra: api}) => {
     const {data} = await api.get<Offer[]>(`/offers/${offerId}/nearby`);
     return data;
@@ -42,7 +40,7 @@ export const fetchNearPlaces = createAsyncThunk<Offer[], string | undefined, TAs
 );
 
 export const fetchReviewsAction = createAsyncThunk<ReviewsInfo, string | undefined, TAsyncThunk>(
-  `${appData.name}/fetchReviews`,
+  `${SliceName.AppData}/fetchReviews`,
   async (offerId: string | undefined, {extra: api}) => {
     const {data} = await api.get<ReviewsInfo>(`/comments/${offerId}`);
     return data;
@@ -64,7 +62,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, TAsyncThunk>(
 );
 
 export const loginAction = createAsyncThunk<TAuthInfo, AuthData, TAsyncThunk>(
-  `${userProcess.name}/login`,
+  `${SliceName.UserProcess}/login`,
   async ({login: email, password}, {dispatch, extra: api}) => {
     const {data} = await api.post<TAuthInfo>(APIRoutes.Login, {email, password});
     saveToken(data.token);

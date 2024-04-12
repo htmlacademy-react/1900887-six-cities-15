@@ -1,14 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../../types/state';
-import { appData } from './app-data';
+import { SliceName } from '../../const';
 
-export const getSelectedOffer = (state: State) => state[appData.name].selectedOffer;
-export const getOffers = (state: State) => state[appData.name].offers;
-export const getCity = (state: State) => state[appData.name].city;
-export const getError = (state: State) => state[appData.name];
-export const getLoadingState = (state: State) => state[appData.name].isLoading;
-export const getComments = (state: State) => state[appData.name].comments;
-export const getNearPlaces = (state: State) => state[appData.name].nearPlaces?.slice(0, 3);
+export const getSelectedOffer = (state: State) => state[SliceName.AppData].selectedOffer;
+export const getOffers = (state: State) => state[SliceName.AppData].offers;
+export const getCity = (state: State) => state[SliceName.AppData].city;
+export const getError = (state: State) => state[SliceName.AppData];
+export const getLoadingState = (state: State) => state[SliceName.AppData].isLoading;
+export const getComments = (state: State) => state[SliceName.AppData].comments;
+export const getNearPlaces = (state: State) => state[SliceName.AppData].nearPlaces?.slice(0, 3);
 
 export const getOffersByCity = createSelector(
   [getOffers, getCity],

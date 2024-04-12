@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { appData } from './app-data/app-data';
-import { userProcess } from './user-process/user-process';
+import appData from './app-data/app-data';
+import userProcess from './user-process/user-process';
+import { SliceName } from '../const';
 
 
 // const initialState: InitialState = {
@@ -16,7 +17,9 @@ import { userProcess } from './user-process/user-process';
 //   favorites: null
 // };
 
-export const rootReducer = combineReducers({
-  [appData.name]: appData.reducer,
-  [userProcess.name]: userProcess.reducer
+const rootReducer = combineReducers({
+  [SliceName.AppData]: appData,
+  [SliceName.UserProcess]: userProcess
 });
+
+export default rootReducer;

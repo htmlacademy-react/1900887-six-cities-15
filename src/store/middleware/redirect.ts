@@ -1,5 +1,5 @@
 import { Middleware, PayloadAction } from '@reduxjs/toolkit';
-import { rootReducer } from '../reducer';
+import rootReducer from '../reducer';
 
 type Reducer = ReturnType<typeof rootReducer>;
 

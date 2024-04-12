@@ -13,9 +13,10 @@ const initialState: AppData = {
   isLoading: false,
 };
 
-export const appData = createSlice({
+const appData = createSlice({
   name: SliceName.AppData,
   initialState: initialState,
+
   reducers: {},
   extraReducers(builder) {
     builder
@@ -66,3 +67,7 @@ export const appData = createSlice({
       });
   }
 });
+
+const {reducer} = appData;
+
+export default reducer;

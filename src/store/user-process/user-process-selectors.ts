@@ -1,10 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { State } from '../../types/state';
-import { userProcess } from './user-process';
+import { SliceName } from '../../const';
 
-export const getError = (state: State) => state[userProcess.name].error;
-export const getCurrentUser = (state: State) => state[userProcess.name].user;
-export const getAuthorizationStatus = (state: State) => state[userProcess.name].authorizationStatus;
+export const getError = (state: State) => state[SliceName.UserProcess].error;
+export const getCurrentUser = (state: State) => state[SliceName.UserProcess].user;
+export const getAuthorizationStatus = (state: State) => state[SliceName.UserProcess].authorizationStatus;
 
 export const getErrorMessage = createSelector(
   [getError],

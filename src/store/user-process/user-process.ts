@@ -9,7 +9,7 @@ const initialState: UserProcess = {
   error: null
 };
 
-export const userProcess = createSlice({
+const userProcess = createSlice({
   name: SliceName.UserProcess,
   initialState: initialState,
   reducers: {},
@@ -29,3 +29,5 @@ export const userProcess = createSlice({
       });
   }
 });
+
+export default userProcess.reducer;
