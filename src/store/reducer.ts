@@ -1,58 +1,22 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { addComment, addToFavoritesAction, dropCurrentUser, getComments, getNearPlacesAction, getOffer, loadOffers, requireAuthorization, saveCurrentUser, selectCity, setError, setIsLoading } from './action';
-import { AuthorizationStatus, DEFAULT_CITY } from '../const';
-import { InitialState } from '../types/state';
+import { combineReducers } from '@reduxjs/toolkit';
+import { appData } from './app-data/app-data';
+import { userProcess } from './user-process/user-process';
 
 
-const initialState: InitialState = {
-  city: DEFAULT_CITY,
-  offers: null,
-  selectedOffer: null,
-  authorizationStatus: AuthorizationStatus.UNKNOWN,
-  isLoading: false,
-  error: null,
-  currentUser: null,
-  comments: null,
-  nearPlaces: null,
-  favorites: null
-};
+// const initialState: InitialState = {
+//   city: DEFAULT_CITY,
+//   offers: null,
+//   selectedOffer: null,
+//   authorizationStatus: AuthorizationStatus.UNKNOWN,
+//   isLoading: false,
+//   error: null,
+//   currentUser: null,
+//   comments: null,
+//   nearPlaces: null,
+//   favorites: null
+// };
 
-export const reducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(selectCity, (state, action) => {
-      state.city = action.payload.city;
-    })
-    .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload;
-    })
-    .addCase(getOffer, (state, action) => {
-      state.selectedOffer = action.payload;
-    })
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
-    })
-    .addCase(setIsLoading, (state, action) => {
-      state.isLoading = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
-    })
-    .addCase(saveCurrentUser, (state, action) => {
-      state.currentUser = action.payload;
-    })
-    .addCase(dropCurrentUser, (state) => {
-      state.currentUser = null;
-    })
-    .addCase(getComments, (state, action) => {
-      state.comments = action.payload;
-    })
-    .addCase(addComment, (state, action) => {
-      state.comments?.push(action.payload);
-    })
-    .addCase(addToFavoritesAction, (state, action) => {
-      state.favorites?.push(action.payload);
-    })
-    .addCase(getNearPlacesAction, (state, action) => {
-      state.nearPlaces = action.payload;
-    });
+export const rootReducer = combineReducers({
+  [appData.name]: appData.reducer,
+  [userProcess.name]: userProcess.reducer
 });

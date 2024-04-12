@@ -31,13 +31,25 @@ export type InitialState = {
 };
 
 export type AppData = {
+  city: City;
   offers: Nullable<Offer[]>;
+  selectedOffer: Nullable<Offer>;
   comments: Nullable<ReviewsInfo>;
   nearPlaces: Nullable<Offer[]>;
   isLoading: boolean;
 }
 
-export type TAsyncThunk = {dispatch: AppDispatch; state: State; extra: AxiosInstance};
+export type UserProcess = {
+  user: Nullable<TAuthInfo>;
+  authorizationStatus: AuthorizationStatus;
+  error: null | string;
+}
+
+export type TAsyncThunk = {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+};
 
 export type TSign = {
   authorizationStatus: string;

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { checkSize, initialState } from './source';
 import { useAppDispatch } from '../../app/hooks';
-import { uploadComment } from '../../api/api-actions';
+import { uploadComment } from '../../store/api-actions';
 import { ratings } from '../form-rating/source';
 import { FormRating } from '../form-rating';
 

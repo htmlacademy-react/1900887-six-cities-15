@@ -1,4 +1,4 @@
-import { logoutAction } from '../../api/api-actions';
+import { logoutAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../app/hooks';
 import { AppRoutes } from '../../app/routes/routes';
 

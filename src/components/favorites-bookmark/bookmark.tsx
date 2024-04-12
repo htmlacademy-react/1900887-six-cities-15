@@ -1,10 +1,10 @@
 import { memo } from 'react';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getClassName } from '../../utils';
 import { useNavigate } from 'react-router-dom';
-import { getUser } from '../../services';
 import { AppRoutes } from '../../app/routes';
-import { fetchAddToFavorites } from '../../api/api-actions';
+import { fetchAddToFavorites } from '../../store/api-actions';
+import { getCurrentUser } from '../../store/user-process/user-process-selectors';
 
 type TBookmark = {
   id: string;
@@ -17,15 +17,15 @@ type TBookmark = {
 const Bookmark = ({ id, isFavorite, bookmarkClassName, width, height }: TBookmark) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const user = getUser();
+  const user = useAppSelector(getCurrentUser);
 
   const handleClick = () => {
     if (!user) {
       navigate(AppRoutes.Login);
+    } else {
+      const status = Number(!isFavorite);
+      dispatch(fetchAddToFavorites({ id, status }));
     }
-
-    const status = Number(!isFavorite);
-    dispatch(fetchAddToFavorites({ id, status }));
   };
 
   return (

@@ -1,8 +1,8 @@
 import { useAppSelector } from '../../app/hooks';
 import { AuthorizationStatus } from '../../const';
-import { getCurrentUser } from '../../store/selectors';
 import { UserInfo } from '../user-info';
 import { SignButton } from '../sign-button';
+import { getCurrentUser } from '../../store/user-process/user-process-selectors';
 
 type TNavigation = {
   authStatus: AuthorizationStatus;

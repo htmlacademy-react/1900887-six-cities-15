@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../app/hooks/index.ts';
-import { getAuthorizationStatus } from '../../store/selectors.ts';
+import { getAuthorizationStatus } from '../../store/user-process/user-process-selectors.ts';
 import { getIsLoginPage } from '../../utils.ts';
 import { Logo } from '../logo';
 import { Navigation } from '../navigation';

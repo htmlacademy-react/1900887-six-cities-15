@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes';
 import { TAuthInfo } from '../../types/state';
 import { useAppSelector } from '../../app/hooks';
-import { getFavoriteOffers } from '../../store/selectors';
+import { getFavoriteOffers } from '../../store/app-data/app-data-selectors';
 
 type TUserInfo = {
   user: TAuthInfo;
