@@ -7,6 +7,10 @@ import { dropToken, dropUser, saveToken } from '../../services';
 import { AppRoutes } from '../../app/routes';
 import { redirect } from 'react-router-dom';
 
+type Error = {
+  errorMessage: string;
+}
+
 const loginAction = createAsyncThunk<TAuthInfo, AuthData, TAsyncThunk>(
   `${SliceName.UserProcess}/login`,
   async ({login: email, password}, {dispatch, extra: api}) => {
@@ -35,6 +39,16 @@ const checkAuthAction = createAsyncThunk<TAuthInfo, undefined, TAsyncThunk>(
     saveToken(data.token);
     return data;
   }
+);
+
+const setError = createAsyncThunk<string, Error>(
+  `${SliceName.UserProcess}/setError`,
+  ({errorMessage}) => errorMessage
+);
+
+const setAuthStatus = createAsyncThunk<AuthorizationStatus, {status: AuthorizationStatus}>(
+  `${SliceName.UserProcess}/setAuthStatus`,
+  ({status}) => status
 );
 
 const initialState: UserProcess = {
@@ -68,6 +82,12 @@ const userProcess = createSlice({
       .addCase(checkAuthAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NO_AUTH;
         state.user = null;
+      })
+      .addCase(setError.fulfilled, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(setAuthStatus.fulfilled, (state, action) => {
+        state.authorizationStatus = action.payload;
       });
   }
 });

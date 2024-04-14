@@ -7,10 +7,10 @@ import { Nullable } from 'vitest';
 import { Loading } from '../../components/spinner/spinner';
 import { ErrorModal } from '../../components/error';
 import { getCity, getOffersByCity } from '../../store/app-data/app-data-selectors';
-import { getErrorMessage } from '../../store/user-process/user-process-selectors';
+import { getError } from '../../store/user-process/user-process-selectors';
 
 export const Main = () => {
-  const error = useAppSelector(getErrorMessage);
+  const error = useAppSelector(getError);
   const selectedCity = useAppSelector(getCity);
   const offers: Nullable<Offer[]> = useAppSelector(getOffersByCity);
 

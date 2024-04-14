@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {TAsyncThunk, TAuthInfo} from '../types/state';
 import { Offer } from '../types/offers';
-import { APIRoutes, SliceName } from '../const';
+import { APIRoutes, AuthorizationStatus, SliceName } from '../const';
 import { AuthData } from '../types/user-data';
 import { dropUser, dropToken, saveToken } from '../services';
 import { ReviewsInfo, ReviewData, Review } from '../types/reviews';
@@ -11,6 +11,10 @@ import { AppRoutes } from '../app/routes';
 type FavoritesData = {
   id: string;
   status: number;
+}
+
+type Error = {
+  errorMessage: string;
 }
 
 const fetchOfferAction = createAsyncThunk<Offer, string | undefined, TAsyncThunk>(
@@ -93,6 +97,16 @@ const uploadComment = createAsyncThunk<Review, ReviewData, TAsyncThunk>(
   }
 );
 
+const setError = createAsyncThunk<string, Error>(
+  `${SliceName.UserProcess}/setError`,
+  ({errorMessage}) => errorMessage
+);
+
+const setAuthStatus = createAsyncThunk<AuthorizationStatus, {status: AuthorizationStatus}>(
+  `${SliceName.UserProcess}/setAuthStatus`,
+  ({status}) => status
+);
+
 export {
   fetchNearPlaces,
   fetchOfferAction,
@@ -102,5 +116,7 @@ export {
   uploadComment,
   loginAction,
   logoutAction,
-  checkAuthAction
+  checkAuthAction,
+  setError,
+  setAuthStatus
 };
