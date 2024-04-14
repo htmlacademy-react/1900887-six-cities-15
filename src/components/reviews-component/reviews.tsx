@@ -3,7 +3,7 @@ import { ReviewsInfo } from '../../types/reviews';
 import { OfferReviewForm } from '../offer-review-form';
 import { ReviewsList } from '../reviews-list';
 import { useAppSelector } from '../../app/hooks';
-import { getCurrentUser } from '../../store/selectors';
+import { getCurrentUser } from '../../store/user-process/user-process-selectors';
 
 type TOfferReviews = {
   id: string;

@@ -6,7 +6,7 @@ import { fetchNearPlaces, fetchOfferAction, fetchReviewsAction } from '../../api
 import { useEffect } from 'react';
 import { getComments, getNearPlacesAction, getOffer } from '../../store/action';
 import { Loading } from '../../components/spinner/spinner';
-import { getCurrentComments, getLoadingState, getSelectedOffer } from '../../store/selectors';
+import { getCurrentComments, getLoadingState, getSelectedOffer } from '../../store/app-data/app-data-selectors';
 
 
 export const OfferComponent = () => {
@@ -20,6 +20,7 @@ export const OfferComponent = () => {
     dispatch(fetchOfferAction(id));
     dispatch(fetchReviewsAction(id));
     dispatch(fetchNearPlaces(id));
+
     return () => {
       dispatch(getOffer(null));
       dispatch(getComments(null));

@@ -14,7 +14,7 @@ import { ReviewsInfo } from '../../types/reviews';
 import { Nullable } from 'vitest';
 import { Map } from '../map';
 import { useAppSelector } from '../../app/hooks';
-import { getNearPlaces } from '../../store/selectors';
+import { getNearPlaces } from '../../store/app-data/app-data-selectors.ts';
 
 type TOffer = {
   offer: IOffer;

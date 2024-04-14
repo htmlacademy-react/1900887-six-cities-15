@@ -1,14 +1,14 @@
 import { FormEventHandler, useEffect, useRef } from 'react';
 import { loginAction } from '../../api/api-actions';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes/routes';
-import { getUser } from '../../services';
+import { getCurrentUser } from '../../store/user-process/user-process-selectors';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const user = getUser();
+  const user = useAppSelector(getCurrentUser);
 
   useEffect(() => {
     if (user) {

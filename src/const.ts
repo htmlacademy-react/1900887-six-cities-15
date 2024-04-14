@@ -124,11 +124,10 @@ export enum SORTING {
 
 export enum NameSpace {
   AppData = 'APP_DATA',
-  CITY = 'city',
-  LOADING = 'isLoading',
-  AUTH = 'authorizationStatus',
-  ERROR = 'error',
-  USER = 'currentUser',
-  COMMENTS = 'comments',
-  NEAR_PLACES = 'nearPlaces'
+  UserProcess = 'USER_PROCESS'
 }
+
+export const SliceName = {
+  AppData: 'app-data',
+  UserProcess: 'user-process',
+} as const;

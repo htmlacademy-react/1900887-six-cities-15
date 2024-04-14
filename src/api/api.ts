@@ -9,15 +9,13 @@ type TErrorType = {
   message: string;
 }
 
-
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true
 };
 
-
-const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
+const shouldDisplayError = (response: AxiosResponse) => StatusCodeMapping[response.status];
 
 export const createApi = (): AxiosInstance => {
   const api = axios.create({
@@ -42,9 +40,9 @@ export const createApi = (): AxiosInstance => {
     (error: AxiosError<TErrorType>) => {
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
-
         proccessErrorHandle(detailMessage.message);
       }
+
       throw error;
     }
   );

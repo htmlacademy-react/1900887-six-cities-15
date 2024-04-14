@@ -1,8 +1,8 @@
+import { setAuthStatus, setError } from '../api';
 import { AuthorizationStatus } from '../const';
 import { store } from '../store';
-import { requireAuthorization, setError } from '../store/action';
 
 export const proccessErrorHandle = (message: string) => {
-  store.dispatch(setError(message));
-  store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(setError({errorMessage: message}));
+  store.dispatch(setAuthStatus({status: AuthorizationStatus.AUTH}));
 };

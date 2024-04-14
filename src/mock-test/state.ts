@@ -1,11 +1,22 @@
-import { AuthorizationStatus, DEFAULT_CITY, NameSpace } from '../const';
-import { mockComments, mockUser } from './mocks';
+import { AuthorizationStatus, DEFAULT_CITY, SliceName } from '../const';
+import { AppData, UserProcess } from '../types/state';
+import { mockComments, mockError, mockFavorites, mockNearPlaces, mockOffer, mockOffers, mockUser } from './mocks';
 
-export const mockState = {
-  [NameSpace.CITY]: DEFAULT_CITY,
-  [NameSpace.LOADING]: true,
-  [NameSpace.AUTH]: AuthorizationStatus.AUTH,
-  [NameSpace.ERROR]: 'access deny',
-  [NameSpace.USER]: mockUser,
-  [NameSpace.COMMENTS]: mockComments,
+type TMockState = {[SliceName.AppData]: AppData; [SliceName.UserProcess]: UserProcess}
+
+export const mockState: TMockState = {
+  [SliceName.AppData]: {
+    city: DEFAULT_CITY,
+    offers: mockOffers,
+    selectedOffer: mockOffer,
+    comments: mockComments,
+    nearPlaces: mockNearPlaces,
+    isLoading: false,
+    favorites: mockFavorites
+  },
+  [SliceName.UserProcess]: {
+    user: mockUser,
+    authorizationStatus: AuthorizationStatus.AUTH,
+    error: mockError
+  }
 };

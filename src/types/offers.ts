@@ -84,7 +84,7 @@ export type TCityPlacesList = Offers & OfferEvent;
 
 export type FavoriteOffers = {offers: Nullable<Offer[]>};
 
-export type FavoriteOffer = {offer: Offer};
+export type FavoriteOfferList = {city: string; offers: Offer[]};
 
 export type TLocationItem = {city: City};
 

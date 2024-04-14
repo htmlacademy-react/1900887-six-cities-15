@@ -3,16 +3,17 @@ import { CITIES } from '../../const';
 import { TLocationItem } from '../../types/offers';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectCity } from '../../store/action';
+import { getCity } from '../../store/app-data/app-data-selectors';
 
 const LocationItem: FC<TLocationItem> = ({ city }) => {
   const { name } = city;
   const dispatch = useAppDispatch();
   const handleClick = () => dispatch(selectCity({ city }));
-  const currentCity = useAppSelector((state) => state.city.name);
+  const currentCity = useAppSelector(getCity);
 
   return (
     <li className="locations__item" onClick={handleClick}>
-      <a className={currentCity === name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}>
+      <a className={currentCity.name === name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}>
         <span>{name}</span>
       </a>
     </li>

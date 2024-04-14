@@ -1,8 +1,7 @@
 import { useAppSelector } from '../../app/hooks';
 import { FavoritesList } from '../../components/favorites-list';
 import { Loading } from '../../components/spinner';
-import { getFavoriteOffers, getLoadingState } from '../../store/selectors';
-import { FavoritesEmpty } from '../favorites-empty';
+import { getFavoriteOffers, getLoadingState } from '../../store/app-data/app-data-selectors';
 
 export const Favorites = () => {
   const offers = useAppSelector(getFavoriteOffers);
@@ -10,10 +9,6 @@ export const Favorites = () => {
 
   if (isLoading) {
     return <Loading />;
-  }
-
-  if (!offers?.length) {
-    return <FavoritesEmpty />;
   }
 
   return (
