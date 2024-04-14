@@ -1,16 +1,11 @@
 import { useAppSelector } from '../../app/hooks';
-import { AuthorizationStatus } from '../../const';
 import { UserInfo } from '../user-info';
 import { SignButton } from '../sign-button';
-import { getCurrentUser } from '../../store/user-process/user-process-selectors';
+import { getCurrentUser, getIsAuth } from '../../store/user-process/user-process-selectors';
 
-type TNavigation = {
-  authStatus: AuthorizationStatus;
-}
-
-export const Navigation = ({ authStatus }: TNavigation) => {
+export const Navigation = () => {
   const user = useAppSelector(getCurrentUser);
-  const isAuth = authStatus === AuthorizationStatus.AUTH;
+  const isAuth = useAppSelector(getIsAuth);
 
   return (
     <nav className="header__nav">

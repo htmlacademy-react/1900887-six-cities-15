@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getClassName } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes';
-import { fetchAddToFavorites } from '../../store/api-actions';
+import { fetchAddToFavorites } from '../../api';
 import { getCurrentUser } from '../../store/user-process/user-process-selectors';
 
 type TBookmark = {

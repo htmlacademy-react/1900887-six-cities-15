@@ -12,7 +12,6 @@ export const Cities: FC<TCities> = ({ selectedCity, offers }) => {
   const sortedOffers: Offer[] = sortOffers({ sortType, offers });
   const handleMouseEvent = useCallback((offer: Offer | null) => setSelectedOffer(offer), []);
 
-
   return (
     <div className='cities'>
       <div className="cities__places-container container">

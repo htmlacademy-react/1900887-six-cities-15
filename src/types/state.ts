@@ -37,6 +37,7 @@ export type AppData = {
   comments: Nullable<ReviewsInfo>;
   nearPlaces: Nullable<Offer[]>;
   isLoading: boolean;
+  favorites: Nullable<Offer[]>;
 }
 
 export type UserProcess = {

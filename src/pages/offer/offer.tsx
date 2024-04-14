@@ -2,7 +2,7 @@ import { NotFound } from '../../components/404';
 import { Offer } from '../../components/offer';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useParams } from 'react-router-dom';
-import { fetchNearPlaces, fetchOfferAction, fetchReviewsAction } from '../../store/api-actions';
+import { fetchNearPlaces, fetchOfferAction, fetchReviewsAction } from '../../api/api-actions';
 import { useEffect } from 'react';
 import { getComments, getNearPlacesAction, getOffer } from '../../store/action';
 import { Loading } from '../../components/spinner/spinner';
@@ -20,6 +20,7 @@ export const OfferComponent = () => {
     dispatch(fetchOfferAction(id));
     dispatch(fetchReviewsAction(id));
     dispatch(fetchNearPlaces(id));
+
     return () => {
       dispatch(getOffer(null));
       dispatch(getComments(null));

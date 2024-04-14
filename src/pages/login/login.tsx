@@ -1,5 +1,5 @@
 import { FormEventHandler, useEffect, useRef } from 'react';
-import { loginAction } from '../../store/api-actions';
+import { loginAction } from '../../api/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes/routes';
